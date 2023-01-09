@@ -1,0 +1,131 @@
+[{
+    "nom":"Lamine",
+    "prenom":"NDIAYE",
+    "matricule":"TP2021 -0",
+    "email":"la@gmail.com",
+    "role":"administrateur",
+    "id":"1"
+    
+},
+
+{
+    "nom":"falla",
+    "prenom":"NDIAYE",
+    "email":"falla@gmail.com",
+    "role":"utilisateur",
+    "matricule":"TP2022-0",
+    "id":"2"
+},
+
+{
+    "nom":"diouma",
+    "prenom":"NDIAYE",
+    "email":"diouma@gmail.com",
+    "role":"utilisateur",
+    "matricule":"TP2023-0",
+    "id":"3"
+    
+},
+{
+    "nom":"diouma",
+    "prenom":"DIONGUE",
+    "email":"diongue@gmail.com",
+    "role":"administrateur",
+    "matricule":"TP2023-0",
+    "id":"4"
+    
+},
+{
+    "prenom":"GANCE",
+    "nom":"GANCE",
+    "email":"gance@gmail.com",
+    "role":"administrateur",
+    "matricule":"TP2023-0",
+    "id":"5"
+    
+},
+{
+    "nom":"THIAM",
+    "prenom":"NDIAYE",
+    "email":"thiam@gmail.com",
+    "role":"administrateur",
+    "matricule":"TP2023-2",
+    "id":"6"
+    
+},
+{
+    "nom":"diouma",
+    "prenom":"MBAYE",
+    "matricule":"TP2023-1",
+    "email":"mbaye@gmail.com",
+    "role":"administrateur",
+    "id":"7"
+    
+    
+},
+{
+    "nom":"Sow",
+    "prenom":"marie",
+    "matricule":"TP2023 -0",
+    "email":"ma@gmail.com",
+    "role":"administrateur",
+    "id":"8"
+    
+},
+
+{
+    "nom":"faye",
+    "prenom":"robert",
+    "email":"rf@gmail.com",
+    "role":"utilisateur",
+    "matricule":"TP2023-0",
+    "id":"9"
+},
+
+{
+    "nom":"mbaye",
+    "prenom":"coumba",
+    "email":"coumba@gmail.com",
+    "role":"utilisateur",
+    "matricule":"TP2023-0",
+    "id":"10"
+    
+},
+{
+    "nom":"diouf",
+    "prenom":"amy",
+    "email":"amy@gmail.com",
+    "role":"administrateur",
+    "matricule":"TP2023-1",
+    "id":"11"
+    
+},
+{
+    "prenom":"diom",
+    "nom":"amy",
+    "email":"diom@gmail.com",
+    "role":"administrateur",
+    "matricule":"TP2023-2",
+    "id":"12"
+    
+},
+{
+    "nom":"THIAM",
+    "prenom":"fatim",
+    "email":"fatim@gmail.com",
+    "role":"administrateur",
+    "matricule":"TP2023-3",
+    "id":"13"
+    
+},
+{
+    "nom":"thiam",
+    "prenom":"maboo",
+    "matricule":"TP2023-4",
+    "email":"maboo@gmail.com",
+    "role":"administrateur",
+    "id":"14"
+    
+    
+}
+]

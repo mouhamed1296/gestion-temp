@@ -1,0 +1,8 @@
+.pagination{
+    float: right;
+    
+}
+.container{
+    position: fixed;
+    justify-content: center;
+}

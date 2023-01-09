@@ -1,0 +1,36 @@
+<div   class="container">
+    <form class="modifier" [formGroup]="updateForm" (ngSubmit)="editUser()">
+  
+        <label>prenom</label>
+        <input
+          class="form-control"
+          type="text"
+          formControlName="prenom"
+          required
+        />
+        <label>nom</label>
+        <input
+  
+          class="form-control"
+          type="text"
+          formControlName="nom"
+          required
+        />
+        <label>email</label>
+        <input
+  
+          class="form-control"
+          type="text"
+          formControlName="email"
+          required
+        />
+  
+  
+      <br>
+  
+        <button class="btn btn-primary btn-block" type="submit">Modifier</button>
+  
+    </form>
+  
+  
+  
