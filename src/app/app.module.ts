@@ -25,7 +25,8 @@ import {  ReactiveFormsModule } from '@angular/forms';
     NgxPaginationModule,
     Ng2SearchPipeModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AppRoutingModule
     
   ],
   providers: [],

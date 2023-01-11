@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 export class ModifierComponent implements OnInit {
 
   getId: any;
-  updateForm!: FormGroup;
+  registerForm!: FormGroup;
   submitted = false;
 
   constructor(
@@ -18,24 +18,24 @@ export class ModifierComponent implements OnInit {
     private ngZone: NgZone,
   ) {
 
-    this.updateForm = this.formBuilder.group({
+    this.registerForm = this.formBuilder.group({
         prenom: [''],
         nom: [''],
         email: [''],
       });
  }
 
+ngOnInit(): void {
+  
+}
 
-
- editUser(): any{
-  this.updateForm.setValue({
+ onSubmit() {
+  this.registerForm.setValue({
     prenom: ['prenom'],
     nom: ['nom'],
     email: ['email'],
   });
  }
- ngOnInit(): void {
-   
- }
+ 
 
 }

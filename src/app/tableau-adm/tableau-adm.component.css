@@ -1,8 +1,10 @@
 .pagination{
     float: right;
+    justify-content: center;
     
 }
-.container{
+.forpagination{
     position: fixed;
-    justify-content: center;
+    margin-top: 35%;
+    padding-right: 30%;
 }

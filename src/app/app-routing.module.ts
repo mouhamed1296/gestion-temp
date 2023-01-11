@@ -1,7 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
-const routes: Routes = [];
+import { TableauAdmComponent } from './tableau-adm/tableau-adm.component';
+import { ModifierComponent } from './modifier/modifier.component';
+const routes: Routes = [
+  {path: 'tableau-adm',component:TableauAdmComponent},
+  {path: 'modifier',component:ModifierComponent},
+  
+  
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
