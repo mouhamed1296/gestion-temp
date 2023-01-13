@@ -5,24 +5,27 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { InscriptionComponent } from './inscription/inscription.component';
-import { ConnectionComponent } from './connection/connection.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
-
+import { ModificationComponent } from './modification/modification.component';
+import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    InscriptionComponent,
-    ConnectionComponent,
-    
-    
-    
+    DashboardComponent,
+    NavbarComponent,
+    SidebarComponent,
+  
+    ModificationComponent,
+       AdminLayoutComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule
     
   ],
   providers: [],
