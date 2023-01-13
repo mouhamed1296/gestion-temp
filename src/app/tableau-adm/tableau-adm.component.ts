@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup,Validators } from '@angular/forms';
 import liste from '../modele/liste.json';
+import Swal from 'sweetalert2';
 
 
 interface donneeliste {
@@ -59,6 +60,13 @@ export class TableauAdmComponent implements OnInit {
     this.donne = liste
   }
 
+ /*  SimpleAlert(){
+    Swal.fire(
+      'modification reussie!',
+      'you cliked the button!',
+      'success'
+    )
+  } */
   changeRole = (id: string, role: string) => {
     this.donne = this.donne.map((d) => {
       if (d.id == id) {
@@ -72,13 +80,30 @@ export class TableauAdmComponent implements OnInit {
  }; 
 
  recupereDonne(id: any,prenom: any,nom: any,email: any){
+
+  Swal.fire({         
+      title: 'Voulez-vous vraiment changer le role de cet utilisateur?',   
+    text: 'Si oui met ok', 
+        icon: 'warning',   
+          confirmButtonColor: "#B82010",  
+            cancelButtonColor: "green" ,   
+             showCancelButton: true,   
+               confirmButtonText: 'ok!',  
+                  cancelButtonText: 'Annuler'  
+                 }).then((result) => {
+                  if(result.value){ 
+                
+                 
   this.registerForm = this.formBuilder.group({
     id : [id],
     prenom: [prenom, Validators.required],
     nom: [nom, Validators.required],
     email: [email, [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
   });
+}
+})
   this.tabOn = false;
+
  }
 
  onSubmit() {

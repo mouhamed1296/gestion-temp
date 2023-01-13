@@ -1,10 +1,10 @@
-<div class=" h-screen flex flex-col gap-5 justify-center mt-6 mb-6" *ngIf="tabOn">
+<div class=" h-screen flex flex-col gap-5 justify-center mt-6 mb-6 py-32" *ngIf="tabOn">
     <div class="search-hero " style="display: flex;">
-        <div class="search-hero">
-            <input class="form-controlMe" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+        <div class="search-hero p-4">
+            <input class="form-controlMe "  type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
                 placeholder="Rechercher...">
         </div>
-        <div style="float: right; margin-left: 80%;">
+        <div style="float: right; margin-left: 70%;">
             <a routerLink="/tableau-arch/">
             <button type="button"
                 class="text-white bg-blue-500 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">archive
@@ -15,7 +15,7 @@
     </div>
 
     <div class="w-full h-full"> <!-- overflow-x-auto relative shadow-md sm:rounded-lg -->
-        <table class="w-full text-sm text-left text-dark-500 dark:text-dark-400">
+        <table class="w-full text-sm text-left text-dark-500 dark:text-dark-400 ">
             <thead class="text-xs text-white uppercase bg-blue-500 dark:bg-blue-500 dark:text-dark-400">
                 <tr>
                     <th scope="col" class="p-4">
@@ -64,7 +64,7 @@
                         {{donnes.role}}
                     </td>
 
-                    <td class="flex items-center py-4 px-6 space-x-3">
+                    <td class="flex items-center py-4 px-6 space-x-3" >
 
                         <button (click)="recupereDonne(donnes.id,donnes.prenom,donnes.nom,donnes.email)" style="border: none;background-color: white;" type="submit">
                             <!-- <a routerLink="/modifier/{{ donnes.id }}"> -->
@@ -119,7 +119,7 @@
         </table>
 
     </div>
-    <div class="container forpagination  "> <!-- fixed-bottom justify-content-center -->
+    <div class="flex justify-center "> <!-- fixed-bottom justify-content-center -->
         <div class="pagination">
             <pagination-controls (pageChange)="pages = $event"></pagination-controls>
         </div>

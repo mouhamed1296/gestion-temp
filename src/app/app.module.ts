@@ -11,6 +11,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { ModifierComponent } from './modifier/modifier.component';
 import { TableauUserComponent } from './tableau-user/tableau-user.component';
 import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
     TableauArchComponent,
     ModifierComponent,
     TableauUserComponent,
-    AdminLayoutComponent
+    AdminLayoutComponent,
+    NavbarComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
