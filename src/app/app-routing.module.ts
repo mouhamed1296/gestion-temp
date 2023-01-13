@@ -6,7 +6,7 @@ import { InscriptionComponent } from './inscription/inscription.component';
 import { ModificationComponent } from './modification/modification.component';
 
 const routes: Routes = [
-  { path: "connection", component: ConnectionComponent},
+  { path: "", pathMatch: "full", component: ConnectionComponent},
   { path: "dashboard", component: DashboardComponent },
   { path: "modification", component: ModificationComponent },
   { path: "inscription", component: InscriptionComponent},
