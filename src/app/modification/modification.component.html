@@ -55,6 +55,13 @@
                        Ce champ est  require
                     </span>
                   </div>
+
+                  <div *ngIf="submitted && registerForm.controls['email'].errors required">
+                     <span class="text-red-700">
+                        Email Address incorrect
+                     </span>
+                   </div>
+                  
                  
                </div>
             </div>

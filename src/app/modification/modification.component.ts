@@ -20,7 +20,7 @@ export class ModificationComponent {
   submitted = false;
   spin=false;
   modifie:modification[]=modifier;
-showForm = false; 
+ showForm = false; 
   constructor(private formBuilder: FormBuilder ){
     
     
@@ -41,6 +41,30 @@ showForm = false;
 onSubmit(){
   this.submitted = true
   this.spin = true
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
    if(this.registerForm.invalid){
     this.spin = false
