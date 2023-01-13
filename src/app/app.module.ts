@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
@@ -8,8 +9,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { TableauArchComponent } from './tableau-arch/tableau-arch.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { ModifierComponent } from './modifier/modifier.component';
-import {  ReactiveFormsModule } from '@angular/forms';
 import { TableauUserComponent } from './tableau-user/tableau-user.component';
+import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,7 @@ import { TableauUserComponent } from './tableau-user/tableau-user.component';
     TableauArchComponent,
     ModifierComponent,
     TableauUserComponent,
-    
+    AdminLayoutComponent
   ],
   imports: [
     BrowserModule,
