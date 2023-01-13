@@ -8,8 +8,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { TableauArchComponent } from './tableau-arch/tableau-arch.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { ModifierComponent } from './modifier/modifier.component';
-import { SwitcherComponent } from './switcher/switcher.component';
 import {  ReactiveFormsModule } from '@angular/forms';
+import { TableauUserComponent } from './tableau-user/tableau-user.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +17,8 @@ import {  ReactiveFormsModule } from '@angular/forms';
     TableauAdmComponent,
     TableauArchComponent,
     ModifierComponent,
-    SwitcherComponent
+    TableauUserComponent,
+    
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup,Validators } from '@angular/forms';
 import liste from '../modele/liste.json';
 
 
@@ -21,15 +22,39 @@ export class TableauAdmComponent implements OnInit {
  
   pages: number = 1;
   searchText:any
-  constructor() {}
-    donne:donneeliste[]= [];
+  
+
+  getId: any;
+  registerForm!: FormGroup;
+  submitted = false;
+  tabOn = true;
+
+  constructor(
+    public formBuilder: FormBuilder,
+   
+  ) {
+
+    this.registerForm = this.formBuilder.group({
+        id: [''],
+        prenom: ['',],
+        nom: [''],
+        email: [''],
+      });
+ } donne:donneeliste[]= [];
+   
 
   ngOnInit(): void {
     
      this.getDonnees()
-
+ 
+     this.registerForm = this.formBuilder.group({
+      prenom: ['', Validators.required],
+      nom: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+  
+  });
   }
-
+  get f() { return this.registerForm.controls; }
   getDonnees = () => {
     this.donne = liste
   }
@@ -46,10 +71,28 @@ export class TableauAdmComponent implements OnInit {
     
  }; 
 
+ recupereDonne(id: any,prenom: any,nom: any,email: any){
+  this.registerForm = this.formBuilder.group({
+    id : [id],
+    prenom: [prenom, Validators.required],
+    nom: [nom, Validators.required],
+    email: [email, [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+  });
+  this.tabOn = false;
+ }
+
+ onSubmit() {
+  this.registerForm.setValue({
+    prenom: [''],
+    nom: [''],
+    email: [''],
+  });
+ }
+
  delete(id: string) {
-  if(confirm("Voulez-vous vraiment supprimer ?")) {
+  //if(confirm("Voulez-vous vraiment supprimer ?")) {
   //console.log(this.updateForm.value.etat);
-  /* if (window.confirm('Voulez-vous vraiment supprimer ?')) { */
+   if (window.confirm('Voulez-vous vraiment supprimer ?')) { 
     //this.crudService.updateUtilisateur(id, this.updateForm.value).subscribe(
       () => {
         console.log('Data updated successfully!');
@@ -60,11 +103,9 @@ export class TableauAdmComponent implements OnInit {
       }
     ;/* } */
   }}
+ }
+  
 
-  editUser(){
-    
-  }
-}
              
    /* const roles = { role:role };   
      if (confirm('Changer de role')) {

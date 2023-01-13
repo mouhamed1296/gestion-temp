@@ -1,6 +1,17 @@
-import { Component, NgZone, OnInit } from '@angular/core';
+import { Component,  OnInit } from '@angular/core';
 import { FormGroup,FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import liste from '../modele/liste.json';
+
+
+interface donneeliste{
+
+  prenom:string;
+  nom:string;
+  email:string;
+  matricule:string;
+  role:string;
+  id:string;
+}
 @Component({
   selector: 'app-modifier',
   templateUrl: './modifier.component.html',
@@ -14,26 +25,31 @@ export class ModifierComponent implements OnInit {
 
   constructor(
     public formBuilder: FormBuilder,
-    private router: Router,
-    private ngZone: NgZone,
+   
   ) {
 
     this.registerForm = this.formBuilder.group({
-        prenom: [''],
+        prenom: ['',],
         nom: [''],
         email: [''],
       });
- }
+ } donne:donneeliste[]= [];
 
 ngOnInit(): void {
   
+  this.getDonnees()
 }
+
+getDonnees = () => {
+  this.donne = liste
+}
+get f() { return this.registerForm.controls; }
 
  onSubmit() {
   this.registerForm.setValue({
-    prenom: ['prenom'],
-    nom: ['nom'],
-    email: ['email'],
+    prenom: [''],
+    nom: [''],
+    email: [''],
   });
  }
  

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SwitcherComponent } from './switcher.component';
+import { TableauUserComponent } from './tableau-user.component';
 
-describe('SwitcherComponent', () => {
-  let component: SwitcherComponent;
-  let fixture: ComponentFixture<SwitcherComponent>;
+describe('TableauUserComponent', () => {
+  let component: TableauUserComponent;
+  let fixture: ComponentFixture<TableauUserComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SwitcherComponent ]
+      declarations: [ TableauUserComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(SwitcherComponent);
+    fixture = TestBed.createComponent(TableauUserComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
