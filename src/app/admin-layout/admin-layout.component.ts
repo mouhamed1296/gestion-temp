@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+
 
 import dashboard from '../histo.json';
 import tableau from '../tableauhis.json';
@@ -23,16 +24,12 @@ PRENOM: string;
 
 }
 
-
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  selector: 'app-admin-layout',
+  templateUrl: './admin-layout.component.html',
+  styleUrls: ['./admin-layout.component.css']
 })
-export class DashboardComponent   {
-
-
-
+export class AdminLayoutComponent {
 
 imageSrc = 'assets/fan.png';
 messageText = '';
@@ -49,5 +46,4 @@ onClick(imageNameObject: { src: string; name: string; }) {
   this.imageSrc = imageNameObject.src;
   this.messageText = imageNameObject.name;
 }
-
 }

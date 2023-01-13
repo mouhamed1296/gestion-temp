@@ -9,6 +9,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 
 import { ModificationComponent } from './modification/modification.component';
+import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ModificationComponent } from './modification/modification.component';
     NavbarComponent,
     SidebarComponent,
   
-    ModificationComponent
+    ModificationComponent,
+       AdminLayoutComponent
   ],
   imports: [
     BrowserModule,
