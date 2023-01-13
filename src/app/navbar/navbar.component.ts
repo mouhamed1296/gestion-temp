@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import profils from '../profil.json';
+import { DONNE } from '../dashboard/dashboard.component';
 
 @Component({
   selector: 'app-navbar',
@@ -6,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
-
+  profil:DONNE[]=profils;
 }

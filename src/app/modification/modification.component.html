@@ -1,5 +1,5 @@
 
- <div  *ngFor="let Modifier of modifie" class="  border-2  flex justify-center">
+ <div  *ngFor="let Modifier of modifie" class="flex items-center justify-center my-20">
    <div class="w-full lg:w-1/2 py-16 px-12  ">
     <h2 class="text-3xl text-center align mb-4">Modifier profil</h2>
 
@@ -11,15 +11,15 @@
               </label>
             <input formControlName=" PRENOM" class="form-control"  [value]=" Modifier.PRENOM"
                [ngClass]="{'is invalid':submitted && registerForm.controls['PRENOM'].errors}" type="text"
-               name="PRENOM"  
+               name="PRENOM"
                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white">
-               
+
                <div *ngIf="submitted && registerForm.controls['PRENOM'].errors required">
                  <span class="text-red-700">
                     Ce champ est  require
                  </span>
                </div>
-              
+
             </div>
          </div>
        <div class="mt-5">
@@ -28,18 +28,18 @@
                </label>
              <input formControlName=" NOM" class="form-control"  [value]=" Modifier.NOM"
                 [ngClass]="{'is invalid':submitted && registerForm.controls['NOM'].errors}" type="text"
-                name="NOM"  
+                name="NOM"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white">
-                
+
                 <div *ngIf="submitted && registerForm.controls['NOM'].errors required">
                   <span class="text-red-700">
                      Ce champ est  require
                   </span>
                 </div>
-               
+
              </div>
           </div>
-         
+
 
           <div class="mt-5">
             <div class="input-control">
@@ -47,15 +47,15 @@
                  </label>
                <input formControlName=" email" class="form-control"  [value]=" Modifier.email"
                   [ngClass]="{'is invalid':submitted && registerForm.controls['email'].errors}" type="text"
-                  name="email"  
+                  name="email"
                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white">
-                  
+
                   <div *ngIf="submitted && registerForm.controls['email'].errors required">
                     <span class="text-red-700">
                        Ce champ est  require
                     </span>
                   </div>
-                 
+
                </div>
             </div>
 
