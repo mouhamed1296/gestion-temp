@@ -11,6 +11,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 
 import { ModificationComponent } from './modification/modification.component';
 import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
+import { InscriptionComponent } from './inscription/inscription.component';
+import { ConnectionComponent } from './connection/connection.component';
 
 @NgModule({
   declarations: [
@@ -18,9 +20,11 @@ import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
     DashboardComponent,
     NavbarComponent,
     SidebarComponent,
+    InscriptionComponent,
+    ConnectionComponent,
   
     ModificationComponent,
-       AdminLayoutComponent
+       AdminLayoutComponent,
   ],
   imports: [
     BrowserModule,

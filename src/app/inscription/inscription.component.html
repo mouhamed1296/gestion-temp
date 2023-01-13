@@ -1,5 +1,5 @@
-  <div class="flex justify-center items-center p-8 border-2 4 w-screen  ">
-<div class="w-full max-w-2xl p-20  bg-white border border-gray-200 rounded-lg shadow-2xl sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700" >
+  <div class="flex justify-center items-center my-32  ">
+<div class="w-full max-w-2xl  bg-white border border-gray-200 rounded-lg shadow-2xl sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700" >
   <h5 class="text-xl text-center font-medium text-gray-900 dark:text-white ">Inscription</h5> 
  
 <form class="flex flex-col" method="POST" id="loginform" [formGroup]="profileForm" >
@@ -10,9 +10,10 @@
       <div *ngIf="profileForm.controls.firstName.dirty &&  profileForm.controls.firstName.errors && profileForm.controls.firstName.errors.required" class="text-red-600">
       <p>Ce champ est requis</p>
     </div>
-    <div *ngIf="profileForm.controls.firstName.dirty &&  profileForm.controls.firstName.errors && profileForm.controls.firstName.errors.whitespace" class="text-red-600">
+    <div *ngIf="profileForm.controls.firstName.dirty &&  profileForm.controls.firstName.errors && profileForm.controls.firstName.errors.whitespace && !profileForm.controls.firstName.errors.required" class="text-red-600">
       <p>Ce champ est invalide</p>
     </div>
+    
     
 
     </div>
@@ -20,13 +21,11 @@
       <label for="inputPassword4" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nom</label>
       <input type="text" formControlName="lastName" class="form-control" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Votre prenom" >
       <div *ngIf="profileForm.controls.lastName.dirty &&  profileForm.controls.lastName.errors && profileForm.controls.lastName.errors.required" class="text-red-600">
-      <p>Ce champ est requis</p>
-    </div>
-    <div *ngIf="profileForm.controls.lastName.dirty &&  profileForm.controls.lastName.errors && profileForm.controls.lastName.errors.whitespace" class="text-red-600">
-      <p>Ce champ est invalide</p>
-    </div>
-     
-      
+        <p>Ce champ est requis</p>
+      </div>
+        <div *ngIf="profileForm.controls.lastName.dirty &&  profileForm.controls.lastName.errors && profileForm.controls.lastName.errors.whitespace && !profileForm.controls.lastName.errors.required" class="text-red-600">
+          <p>Ce champ est invalide</p>
+        </div>
     </div>
   </div>
 
@@ -45,12 +44,11 @@
 
     <div class="mb-6 w-full">
       <label for="inputState" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Rôle</label>
-      <select type="password" id="role" name="role" class="form-select " formControlName="Role" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" >
-        
-        <option name="role">administrateur</option>
-        <option name="role">utilisateur_simple</option>
+      <select type="password" id="role" name="role" class="form-select "  formControlName="Role" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" >
+        <option value="admin">administrateur</option>
+        <option value="utilisateur">utilisateur</option>
       </select>
-      <div *ngIf="profileForm.controls.Role.dirty &&  profileForm.controls.Role.errors && profileForm.controls.Role.errors.required" class="text-red-600">
+      <div *ngIf="profileForm.controls.Role.dirty &&  profileForm.controls.Role.errors && profileForm.controls.Role.errors.hasRole" class="text-red-600">
         <p>Ce champ est requis</p>
       </div>
 

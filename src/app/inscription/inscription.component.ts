@@ -29,9 +29,22 @@ export class InscriptionComponent  {
     Password: new FormControl('', Validators.required),
     Confirm: new FormControl('', Validators.required),
   }, {
-    validators: this.MustMatch('Password', 'Confirm')
+    validators: [this.MustMatch('Password', 'Confirm'), this.handleRole('Role')],
   });
 
+  handleRole(controlName: string) {
+    return (formGroup: FormGroup) => {
+      const control = formGroup.controls[controlName]
+      if (control.errors && !control.errors.hasRole) {
+        return;
+      }
+      if (control.value != 'admin' && control.value != 'utilisateur') {
+        control.setErrors({ hasRole: true })
+      } else {
+        control.setErrors(null)
+      }
+    }
+  }
     //ici j'exporte la class MushMatch pour la gestion de mes mots de passes
  MustMatch(controlName: string, matchingControlName: string) {
   return (formGroup: FormGroup) => {
