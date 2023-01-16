@@ -21,19 +21,27 @@
             </div>
         </div>
             <div class="flex py-16 bg-white px-10 shadow-md gap-28 justify-center items-center rounded-md">
-              <div class="h-full w-32">
+              <div class="h-full w-24">
                   <img src="{{imageSrc}}" alt="Ventilo">
                   <div>{{messageText}}</div>
 
               </div>
               <div>
-                  <span class="flex flex-col font-bold ">
+                  <div class="flex flex-col gap-2 font-bold ">
                     Allumage
+            <div class="h-24 w-24">
+                    <button *ngFor="let imageButton of imageButtonOff; " (click)="onClick(imageButton)" class="button">
+           <img src="{{offsrc}}" alt="">
+                    </button>
+                  </div>
+               <div class="h-24 w-24">
+                    <button *ngFor="let imageButton of imageButtonOn; " (click)="onClick(imageButton)" class="button">
+           <img src="{{onsrc}}" alt="">
+                    </button>
+                  </div>
+                  </div>
+                  
 
-                    <button *ngFor="let imageButton of imageButtons; let i = index" (click)="onClick(imageButton)" class="button">{{i}}</button>
-
-                  </span>
-                  <button class="border-3 bg-green-500 w-full h-full "></button>
 
               </div>
             </div>

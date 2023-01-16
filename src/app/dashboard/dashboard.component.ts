@@ -6,21 +6,21 @@ import profils from '../profil.json';
 
 
 
-interface historique{
+interface historique {
   Heure: string;
- temperature: string;
- humidite: string;
- img:string;
-}
-interface tab{
+  temperature: string;
   humidite: string;
- temperature: string;
+  img: string;
+}
+interface tab {
+  humidite: string;
+  temperature: string;
 
 }
-export interface DONNE{
+export interface DONNE {
   NOM: string;
-PRENOM: string;
-
+  PRENOM: string;
+  matricule: string,
 
 }
 
@@ -30,29 +30,32 @@ PRENOM: string;
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent   {
+export class DashboardComponent {
+
+  histo: historique[] = dashboard;
+  tableauhis: tab[] = tableau;
+  profil: DONNE[] = profils;
+  ngOnInit(): void {
+
+  }
 
 
+  imageSrc = 'assets/fan.png';
+  messageText = '';
+  offsrc = 'assets/off.png'
+  onsrc = 'assets/on.png'
+
+  imageButtonOff = [{ src: 'assets/fan.png', name: 'OFF', srcs:'assets/on.png',srcr : 'assets/off.png' }]
+  imageButtonOn = [ { src: 'assets/fan2.gif', name: 'ON', srcr : 'assets/off.png',srcs : 'assets/on.png'}]
 
 
-imageSrc = 'assets/fan.png';
-messageText = '';
-index= 'assets/off.png'
+  onClick(imageNameObject: { src: string; name: string; srcs: string; srcr: string; }) {
+    this.imageSrc = imageNameObject.src;
+    this.onsrc = imageNameObject.srcs;
+    this.offsrc = imageNameObject.srcr;
+    this.messageText = imageNameObject.name;
 
-imageButtons = [ {src: 'assets/fan.png', name: 'OFF', onsrc:'assets/on.png'},
-{src: 'assets/fan2.gif', name: 'ON'}]
 
-
-histo:historique[]=dashboard;
-tableauhis:tab[]=tableau;
-profil:DONNE[]=profils;
-ngOnInit():void{
-
-}
-onClick(imageNameObject: { src: string; name: string; }) {
-  this.imageSrc = imageNameObject.src;
-  this.messageText = imageNameObject.name;
-  
-}
+  }
 
 }

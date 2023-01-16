@@ -19,7 +19,7 @@ export class ModificationComponent {
   title = 'angularvalidate';
   submitted = false;
   spin=false;
-  modifie:modification[]=modifier;
+ 
  showForm = false; 
   constructor(private formBuilder: FormBuilder ){
     
