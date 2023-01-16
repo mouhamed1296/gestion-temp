@@ -31,6 +31,12 @@ PRENOM: string;
   styleUrls: ['./admin-layout.component.css']
 })
 export class AdminLayoutComponent {
+  pageUrl: string = ''
+  constructor(private router:Router){
+    this.router.events.subscribe((event: any) => {
+      this.pageUrl = this.router.routerState.snapshot.url;
+    })
+  }
 
 imageSrc = 'assets/fan.png';
 messageText = '';
