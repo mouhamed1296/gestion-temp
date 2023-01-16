@@ -3,7 +3,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TableauAdmComponent } from './tableau-adm/tableau-adm.component';
@@ -32,9 +31,8 @@ import { ConnectionComponent } from './connection/connection.component';
     SidebarComponent,
     InscriptionComponent,
     ConnectionComponent,
-  
     ModificationComponent,
-       AdminLayoutComponent,
+    AdminLayoutComponent,
   ],
   imports: [
     BrowserModule,

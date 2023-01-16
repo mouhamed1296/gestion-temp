@@ -93,10 +93,11 @@ export class TableauAdmComponent implements OnInit {
                  }).then((result) => {
                   if(result.value){ 
                 
+                    //firstName: ['', [Validators.required, this.noWhitespaceValidator]],
                  
   this.registerForm = this.formBuilder.group({
     id : [id],
-    prenom: [prenom, Validators.required],
+    prenom: [prenom, Validators.required, ],
     nom: [nom, Validators.required],
     email: [email, [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
   });
@@ -105,6 +106,8 @@ export class TableauAdmComponent implements OnInit {
   this.tabOn = false;
 
  }
+
+ 
 
  onSubmit() {
   this.registerForm.setValue({
