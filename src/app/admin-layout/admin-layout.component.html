@@ -1,4 +1,4 @@
-<div class="flex overflow-scroll min-h-screen">
+<div class="flex overflow-scroll min-h-screen" *ngIf="this.pageUrl != '/'; else unAuthorizedLayout">
   <div class="w-1/6 bg-blue-500">
     <app-sidebar></app-sidebar>
   </div>
@@ -7,5 +7,8 @@
     <router-outlet></router-outlet>
   </div>
 </div>
+<ng-template #unAuthorizedLayout>
+  <router-outlet></router-outlet>
+</ng-template>
 
 
