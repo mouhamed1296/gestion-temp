@@ -21,6 +21,7 @@ export interface DONNE{
   NOM: string;
 PRENOM: string;
 
+
 }
 
 
@@ -36,8 +37,11 @@ export class DashboardComponent   {
 
 imageSrc = 'assets/fan.png';
 messageText = '';
-imageButtons = [ {src: 'assets/fan.png', name: 'OFF'},
+index= 'assets/off.png'
+
+imageButtons = [ {src: 'assets/fan.png', name: 'OFF', onsrc:'assets/on.png'},
 {src: 'assets/fan2.gif', name: 'ON'}]
+
 
 histo:historique[]=dashboard;
 tableauhis:tab[]=tableau;
@@ -48,6 +52,7 @@ ngOnInit():void{
 onClick(imageNameObject: { src: string; name: string; }) {
   this.imageSrc = imageNameObject.src;
   this.messageText = imageNameObject.name;
+  
 }
 
 }
