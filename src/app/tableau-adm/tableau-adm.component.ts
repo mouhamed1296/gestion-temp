@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup,Validators } from '@angular/forms';
-import liste from '../modele/liste.json';
 import Swal from 'sweetalert2';
+import { UserService } from '../services/user.service';
+import { User } from '../models/user.model';
 
 
 interface donneeliste {
@@ -11,7 +12,7 @@ interface donneeliste {
   role:string;
   matricule:string;
   id:string;
-  
+
 
 }
 @Component({
@@ -20,10 +21,10 @@ interface donneeliste {
   styleUrls: ['./tableau-adm.component.css']
 })
 export class TableauAdmComponent implements OnInit {
- 
+  donne: User[]= [];
   pages: number = 1;
   searchText:any
-  
+
 
   getId: any;
   registerForm!: FormGroup;
@@ -32,32 +33,34 @@ export class TableauAdmComponent implements OnInit {
 
   constructor(
     public formBuilder: FormBuilder,
-   
-  ) {
+    private userService: UserService
 
+  ) {
     this.registerForm = this.formBuilder.group({
         id: [''],
         prenom: ['',],
         nom: [''],
         email: [''],
       });
- } donne:donneeliste[]= [];
-   
+ }
+
 
   ngOnInit(): void {
-    
+
      this.getDonnees()
- 
+
      this.registerForm = this.formBuilder.group({
       prenom: ['', Validators.required],
       nom: ['', Validators.required],
       email: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
-  
+
   });
   }
   get f() { return this.registerForm.controls; }
   getDonnees = () => {
-    this.donne = liste
+    this.userService.getUsers().subscribe((donne:any) => {
+      this.donne = donne
+    })
   }
 
  /*  SimpleAlert(){
@@ -67,34 +70,28 @@ export class TableauAdmComponent implements OnInit {
       'success'
     )
   } */
-  changeRole = (id: string, role: string) => {
-    this.donne = this.donne.map((d) => {
-      if (d.id == id) {
-        d.role = role == 'administrateur' ? 'utilisateur' : 'administrateur'; /* pour switche */
-      }
-      return d
+  changeRole = (id: string) => {
+    this.userService.changerRole(id).subscribe(()=> {
+      this.getDonnees()
     })
 
-    console.log(this.donne);
-    
- }; 
+ };
 
  recupereDonne(id: any,prenom: any,nom: any,email: any){
 
-  Swal.fire({         
-      title: 'Voulez-vous vraiment changer le role de cet utilisateur?',   
-    text: 'Si oui met ok', 
-        icon: 'warning',   
-          confirmButtonColor: "#B82010",  
-            cancelButtonColor: "green" ,   
-             showCancelButton: true,   
-               confirmButtonText: 'ok!',  
-                  cancelButtonText: 'Annuler'  
+  Swal.fire({
+      title: 'Voulez-vous vraiment changer le role de cet utilisateur?',
+    text: 'Si oui met ok',
+        icon: 'warning',
+          confirmButtonColor: "#B82010",
+            cancelButtonColor: "green" ,
+             showCancelButton: true,
+               confirmButtonText: 'ok!',
+                  cancelButtonText: 'Annuler'
                  }).then((result) => {
-                  if(result.value){ 
-                
-                    //firstName: ['', [Validators.required, this.noWhitespaceValidator]],
-                 
+                  if(result.value){
+
+
   this.registerForm = this.formBuilder.group({
     id : [id],
     prenom: [prenom, Validators.required, ],
@@ -120,7 +117,7 @@ export class TableauAdmComponent implements OnInit {
  delete(id: string) {
   //if(confirm("Voulez-vous vraiment supprimer ?")) {
   //console.log(this.updateForm.value.etat);
-   if (window.confirm('Voulez-vous vraiment supprimer ?')) { 
+   if (window.confirm('Voulez-vous vraiment supprimer ?')) {
     //this.crudService.updateUtilisateur(id, this.updateForm.value).subscribe(
       () => {
         console.log('Data updated successfully!');
@@ -132,10 +129,10 @@ export class TableauAdmComponent implements OnInit {
     ;/* } */
   }}
  }
-  
 
-             
-   /* const roles = { role:role };   
+
+
+   /* const roles = { role:role };
      if (confirm('Changer de role')) {
               this.crudService.change_role(id, user).subscribe((data) => {
-              this.ngOnInit();       });      }*/  
+              this.ngOnInit();       });      }*/

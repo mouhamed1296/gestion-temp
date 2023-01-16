@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,6 +18,7 @@ import { ModificationComponent } from './modification/modification.component';
 import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { ConnectionComponent } from './connection/connection.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -31,18 +32,18 @@ import { ConnectionComponent } from './connection/connection.component';
     SidebarComponent,
     InscriptionComponent,
     ConnectionComponent,
+    DashboardComponent,
     ModificationComponent,
     AdminLayoutComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule,
     NgxPaginationModule,
     Ng2SearchPipeModule,
     FormsModule,
-    ReactiveFormsModule,
-    AppRoutingModule
-    
   ],
   providers: [],
   bootstrap: [AppComponent]
