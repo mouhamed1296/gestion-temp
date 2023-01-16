@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
 import dashboard from '../histo.json';
 import tableau from '../tableauhis.json';
 import profils from '../profil.json';
+import { Router } from '@angular/router';
 
 
 
