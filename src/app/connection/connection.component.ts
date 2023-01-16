@@ -1,18 +1,7 @@
 import { Component } from '@angular/core';
-<<<<<<< HEAD
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-
-
-interface inscipt{
-  email:string;
-  password:string;
-}
-
-=======
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
->>>>>>> dev
 
 @Component({
   selector: 'app-connection',
