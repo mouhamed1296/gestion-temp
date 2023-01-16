@@ -10,7 +10,10 @@ export class UserService {
   API_BASE_URL = 'http://localhost:3001/users';
   constructor(private http:HttpClient) {}
 
-  getUsers(): Observable<User> {
-    return this.http.get<User>(this.API_BASE_URL);
+  getUsers(): Observable<User[]> {
+    return this.http.get<User[]>(this.API_BASE_URL);
+  }
+  changerRole(id: string) {
+    return this.http.patch(this.API_BASE_URL + "/switch/" +id, {})
   }
 }

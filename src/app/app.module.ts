@@ -19,7 +19,7 @@ import { ModificationComponent } from './modification/modification.component';
 import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { ConnectionComponent } from './connection/connection.component';
-import { RouterModule } from '@angular/router';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -33,9 +33,9 @@ import { RouterModule } from '@angular/router';
     SidebarComponent,
     InscriptionComponent,
     ConnectionComponent,
-
+    DashboardComponent,
     ModificationComponent,
-       AdminLayoutComponent,
+    AdminLayoutComponent,
   ],
   imports: [
     BrowserModule,
