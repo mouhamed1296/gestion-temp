@@ -9,20 +9,20 @@ import { ConnectionComponent } from './connection/connection.component';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { ModificationComponent } from './modification/modification.component';
 
-  
+
 
 
 const routes: Routes = [
   { path: "", pathMatch: "full", component: ConnectionComponent},
   { path: "dashboard", component: DashboardComponent },
-  { path: "modification", component: ModificationComponent },
+  /* { path: "modification", component: ModificationComponent }, */
   { path: "inscription", component: InscriptionComponent},
   {path: 'tableau-adm',component:TableauAdmComponent},
   {path: 'modifier/:id',component:ModifierComponent},
   {path: 'tableau-user',component:TableauUserComponent},
   {path: 'tableau-arch',component:TableauArchComponent},
   {path: "modification", component: ModifierComponent},
-  
+
 
 ];
 

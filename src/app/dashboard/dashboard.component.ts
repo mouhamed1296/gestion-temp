@@ -42,7 +42,7 @@ imageButtons = [ {src: 'assets/fan.png', name: 'OFF'},
 histo:historique[]=dashboard;
 tableauhis:tab[]=tableau;
 profil:DONNE[]=profils;
-ngOnInit():void{
+ngOnInit(){
 
 }
 onClick(imageNameObject: { src: string; name: string; }) {
