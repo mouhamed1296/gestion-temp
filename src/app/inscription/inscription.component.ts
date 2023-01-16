@@ -32,6 +32,18 @@ export class InscriptionComponent  {
     validators: [this.MustMatch('Password', 'Confirm'), this.handleRole('Role')],
   });
 
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+    this.profileForm = this.builder.group({
+      id:[''],
+      firstName: ['', [Validators.required, this.noWhitespaceValidator]],
+      lastName: ['',[Validators.required, this.noWhitespaceValidator]],
+      Email: ['',[Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+      
+    })
+  }
+
   handleRole(controlName: string) {
     return (formGroup: FormGroup) => {
       const control = formGroup.controls[controlName]
@@ -69,6 +81,9 @@ export class InscriptionComponent  {
     const isValid = !isWhitespace;
     return isValid ? null : { 'whitespace': true };
 }
+ 
+
+
 
   }
   

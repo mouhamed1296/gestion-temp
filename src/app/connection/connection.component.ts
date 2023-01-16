@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import inscipt from '../modele/inscipt.json';
+
 
 interface inscipt{
   email:string;
