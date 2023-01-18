@@ -16,4 +16,13 @@ export class UserService {
   changerRole(id: string) {
     return this.http.patch(this.API_BASE_URL + "/switch/" +id, {})
   }
+
+  delete(id: string) {
+    return this.http.delete(this.API_BASE_URL + "/" +id)
+  }
+  
+  update(id: string ,data: any){
+    return this.http.patch(this.API_BASE_URL + "/" +id, {})
+  }
+  
 }
