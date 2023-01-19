@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -20,6 +20,7 @@ import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { ConnectionComponent } from './connection/connection.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,13 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     Ng2SearchPipeModule,
     FormsModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
