@@ -67,8 +67,17 @@ export class UsersService {
   }
 
   //Recuperation de tous les utilisateur de la base
-  findAll() {
-    return this.userModel.find().exec();
+  async findAll() {
+    return (await this.userModel.find().exec()).filter(
+      (user) => user.etat === 1,
+    );
+  }
+
+  //Recuperation de tous les utilisateur archive de la base
+  async findAllArchive() {
+    return (await this.userModel.find().exec()).filter(
+      (user) => user.etat === 0,
+    );
   }
 
   //Recuperation d'un utilisateur de la base à travers son email

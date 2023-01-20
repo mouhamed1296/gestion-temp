@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {  FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-
-/* import { AbstractControl, ValidatorFn } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { User } from '../models/User'; */
+import { UserService } from '../services/user.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-inscription',
@@ -11,15 +9,9 @@ import { User } from '../models/User'; */
   styleUrls: ['./inscription.component.css']
 })
 export class InscriptionComponent  {
+  signupError: string | null = null;
 
- 
-  constructor(private builder: FormBuilder){
-    this.profileForm.valueChanges.subscribe((data) => {
-      console.log(data);
-      console.log(this.profileForm.controls.firstName.errors);
-      
-    })
-  }
+  constructor(private builder: FormBuilder, private userService: UserService){}
 
   profileForm = this.builder.group({
     firstName: ['', [Validators.required, this.noWhitespaceValidator]],
@@ -46,45 +38,69 @@ export class InscriptionComponent  {
     }
   }
     //ici j'exporte la class MushMatch pour la gestion de mes mots de passes
- MustMatch(controlName: string, matchingControlName: string) {
-  return (formGroup: FormGroup) => {
-      const control = formGroup.controls[controlName];
-      const matchingControl = formGroup.controls[matchingControlName];
+  MustMatch(controlName: string, matchingControlName: string) {
+    return (formGroup: FormGroup) => {
+        const control = formGroup.controls[controlName];
+        const matchingControl = formGroup.controls[matchingControlName];
 
-      if (matchingControl.errors && !matchingControl.errors.mustMatch) {
-          //renvoie si un autre validateur a déjà trouvé une erreur sur le matchingControl
-          return;
-      }
+        if (matchingControl.errors && !matchingControl.errors.mustMatch) {
+            //renvoie si un autre validateur a déjà trouvé une erreur sur le matchingControl
+            return;
+        }
 
-      //définir une erreur sur matchingControl si la validation échoue
-      if (control.value !== matchingControl.value) {
-          matchingControl.setErrors({ mustMatch: true });
-      } else {
-          matchingControl.setErrors(null);
-      }
+        //définir une erreur sur matchingControl si la validation échoue
+        if (control.value !== matchingControl.value) {
+            matchingControl.setErrors({ mustMatch: true });
+        } else {
+            matchingControl.setErrors(null);
+        }
+    }
   }
-}
- noWhitespaceValidator(control: FormControl) {
-    const isWhitespace = (control.value || '').trim().length === 0;
-    const isValid = !isWhitespace;
-    return isValid ? null : { 'whitespace': true };
-}
-
+  //Validation des espaces
+  noWhitespaceValidator(control: FormControl) {
+      const isWhitespace = (control.value || '').trim().length === 0;
+      const isValid = !isWhitespace;
+      return isValid ? null : { 'whitespace': true };
   }
-  
-  
-  
- 
-    
 
-    
+  //Enregistrement de l'utilisateur
+  register() {
+    if(this.profileForm.invalid) return;
+    const data = {
+      nom: this.profileForm.value.firstName,
+      prenom: this.profileForm.value.lastName,
+      email: this.profileForm.value.Email,
+      role: this.profileForm.value.Role,
+      password: this.profileForm.value.Password
+    }
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
 
-  
+    //Inscription de l'utilisateur
+    this.userService.register(data).subscribe({
+      next: (user) => {
+        Toast.fire({
+          icon: 'success',
+          title: `${user.prenom + ' ' + user.nom} a été inscris avec succés`
+        })
+      },
+      error: (err) => {
+        this.signupError = err.error.message
+        setTimeout(() => {
+          this.signupError = null;
+        }, 5000)
+      },
+      complete: () => console.log("complete")
+    })
+  }
 
-    
-
-
-
- 
-  
-
+}
