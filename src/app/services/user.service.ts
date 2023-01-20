@@ -23,4 +23,17 @@ export class UserService {
   register(user: Partial<User>): Observable<any> {
     return this.http.post(this.API_BASE_URL, user, {headers: this.headers})
   }
+
+  delete(id: string) {
+    return this.http.delete(this.API_BASE_URL + "/" +id)
+  }
+  
+  update(id: string ,data: any){
+    return this.http.patch(this.API_BASE_URL + "/" +id, {})
+  }
+  
+  restaure(id: string){
+    return this.http.patch(this.API_BASE_URL + "/restore/" +id, {})
+  }
+
 }
