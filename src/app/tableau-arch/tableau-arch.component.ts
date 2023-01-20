@@ -46,6 +46,7 @@ export class TableauArchComponent implements OnInit{
 }
 restaurer( id: String) {
 
+  
   console.log(id); 
 }
 }

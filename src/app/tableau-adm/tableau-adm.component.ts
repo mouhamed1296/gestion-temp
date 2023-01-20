@@ -22,7 +22,7 @@ interface donneeliste {
 })
 export class TableauAdmComponent implements OnInit {
   donne: User[]= [];
-  pages: number = 1;
+  pages: number =1;
   searchText:any
 
   

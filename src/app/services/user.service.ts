@@ -25,4 +25,8 @@ export class UserService {
     return this.http.patch(this.API_BASE_URL + "/" +id, {})
   }
   
+  restaure(id: string){
+    return this.http.patch(this.API_BASE_URL + "/restore/" +id, {})
+  }
+
 }
