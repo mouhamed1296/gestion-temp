@@ -14,7 +14,7 @@
 
         <ul class="space-y-2">
            <li>
-              <a href="#"
+              <a routerLink="/dashboard"
                  class="flex items-center p-2 text-md font-bold text-white rounded-md hover:bg-blue-700">
                  <svg aria-hidden="true"
                     class="w-6 h-6 text-white transition duration-75 group-hover:text-gray-900"
@@ -26,8 +26,8 @@
               </a>
            </li>
 
-           <li>
-              <a href="#"
+           <li *ngIf="isAdmin">
+              <a routerLink="/tableau-adm"
                  class="flex items-center p-2 text-md font-bold text-white rounded-md hover:bg-blue-700">
                  <svg aria-hidden="true"
                     class="flex-shrink-0 w-6 h-6 text-white transition duration-75 group-hover:text-gray-900 dark:group-hover:text-white"
@@ -38,8 +38,8 @@
                  <span class="flex-1 ml-3 whitespace-nowrap">Utilisateur</span>
               </a>
            </li>
-           <li>
-              <a href="#"
+           <li *ngIf="isAdmin">
+              <a routerLink="/inscription"
                  class="flex items-center p-2 text-md font-bold text-white rounded-md hover:bg-blue-700">
                  <svg aria-hidden="true"
                     class="flex-shrink-0 w-6 h-6 text-white transition duration-7 group-hover:text-gray-900"

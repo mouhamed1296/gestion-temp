@@ -17,7 +17,7 @@ import { Role } from './dto/login-user.dto';
 import { JwtAuthGuard } from 'src/auth/guards/jwtAuthGuard';
 import RoleGuard from 'src/auth/guards/roleGuard';
 
-/* @UseGuards(JwtAuthGuard, RoleGuard(Role.Admin)) */
+@UseGuards(JwtAuthGuard, RoleGuard(Role.Admin))
 @Controller('users')
 export class UsersController {
   logger = new ConsoleLogger();
@@ -39,6 +39,12 @@ export class UsersController {
   @Get()
   findAll() {
     return this.usersService.findAll();
+  }
+
+  //Récupérer tous les utilisateurs archivés
+  @Get('/archive')
+  findAllArchive() {
+    return this.usersService.findAllArchive();
   }
 
   //Récuperer un utilisateur à travers son mail
