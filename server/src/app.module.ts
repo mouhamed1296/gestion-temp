@@ -4,8 +4,8 @@ import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
-import { LionResolver } from './lion/lion.resolver';
-import { LionModule } from './lion/lion.module';
+/* import { LionResolver } from './lion/lion.resolver';
+import { LionModule } from './lion/lion.module'; */
 
 @Module({
   imports: [
@@ -14,9 +14,9 @@ import { LionModule } from './lion/lion.module';
     ),
     UsersModule,
     AuthModule,
-    LionModule,
+  
   ],
   controllers: [AppController],
-  providers: [AppService, LionResolver],
+  providers: [AppService, ],
 })
 export class AppModule {}

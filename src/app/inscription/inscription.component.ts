@@ -40,6 +40,9 @@ export class InscriptionComponent  {
       firstName: ['', [Validators.required, this.noWhitespaceValidator]],
       lastName: ['',[Validators.required, this.noWhitespaceValidator]],
       Email: ['',[Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+      Role: new FormControl('', Validators.required),
+      Password: new FormControl('', Validators.required),
+      Confirm: new FormControl('', Validators.required),
       
     })
   }
