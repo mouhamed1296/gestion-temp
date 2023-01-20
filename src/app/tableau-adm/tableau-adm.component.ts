@@ -22,10 +22,10 @@ interface donneeliste {
 })
 export class TableauAdmComponent implements OnInit {
   donne: User[]= [];
-  pages: number = 1;
+  pages: number =1;
   searchText:any
 
-
+  
   getId: any;
   registerForm!: FormGroup;
   submitted = false;
@@ -37,11 +37,13 @@ export class TableauAdmComponent implements OnInit {
 
   ) {
     this.registerForm = this.formBuilder.group({
-        id: [''],
+        
         prenom: ['',],
         nom: [''],
         email: [''],
       });
+
+      
  }
 
 
@@ -80,29 +82,33 @@ export class TableauAdmComponent implements OnInit {
  recupereDonne(id: any,prenom: any,nom: any,email: any){
 
   Swal.fire({
-      title: 'Voulez-vous vraiment changer le role de cet utilisateur?',
-    text: 'Si oui met ok',
+      title: 'Voulez-vous vraiment modifier cet utilisateur?',
+    
         icon: 'warning',
           confirmButtonColor: "#B82010",
             cancelButtonColor: "green" ,
              showCancelButton: true,
-               confirmButtonText: 'ok!',
+               confirmButtonText: 'oui!',
                   cancelButtonText: 'Annuler'
                  }).then((result) => {
                   if(result.value){
 
 
   this.registerForm = this.formBuilder.group({
-    id : [id],
-    prenom: [prenom, Validators.required],
+  
+    prenom: [prenom, Validators.required ],
     nom: [nom, Validators.required],
     email: [email, [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
   });
+
+ 
 }
 })
   this.tabOn = false;
 
  }
+
+ 
 
  onSubmit() {
   this.registerForm.setValue({
@@ -113,24 +119,41 @@ export class TableauAdmComponent implements OnInit {
  }
 
  delete(id: string) {
-  //if(confirm("Voulez-vous vraiment supprimer ?")) {
-  //console.log(this.updateForm.value.etat);
-   if (window.confirm('Voulez-vous vraiment supprimer ?')) {
-    //this.crudService.updateUtilisateur(id, this.updateForm.value).subscribe(
-      () => {
-        console.log('Data updated successfully!');
-        //this.success = 'Archivé avec succés';
-        //setInterval(() => { this.success = ''}, 3000);
-        this.getDonnees();
-         //this.ngZone.run(() => this.router.navigateByUrl('active'));
-      }
-    ;/* } */
-  }}
+
+  this.userService.delete(id).subscribe(()=>{
+    this.getDonnees()
+  })
+
+}
+
+  modifier(id: any){
+    if(!this.registerForm.valid){
+      return
+    }
+    console.log(this.registerForm.value)
+    this.userService.update(id,this.registerForm.value).subscribe(()=> {
+      this.getDonnees()
+      
+    })
+  }
  }
 
 
 
-   /* const roles = { role:role };
-     if (confirm('Changer de role')) {
-              this.crudService.change_role(id, user).subscribe((data) => {
-              this.ngOnInit();       });      }*/
+
+
+
+
+   //if(confirm("Voulez-vous vraiment supprimer ?")) {
+  //console.log(this.updateForm.value.etat);
+  //if (window.confirm('Voulez-vous vraiment supprimer ?')) {
+    //this.userService.Delete(id, this.updateForm.value).subscribe(
+     // () => {
+       // console.log('Data updated successfully!');
+        //this.success = 'Archivé avec succés';
+        //setInterval(() => { this.success = ''}, 3000);
+        //this.getDonnees();
+         //this.ngZone.run(() => this.router.navigateByUrl('active'));
+     // }
+    ;/* } */
+ // }
