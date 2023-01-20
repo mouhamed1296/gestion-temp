@@ -1,6 +1,8 @@
 import { Component, OnInit,NgZone} from '@angular/core';
 import { FormBuilder,FormGroup } from '@angular/forms';
 import liste from '../modele/liste.json';
+import { UserService } from '../services/user.service';
+import { User } from '../models/user.model';
 
 
 interface donneeliste{
@@ -11,7 +13,7 @@ interface donneeliste{
   matricule:string;
   role:string;
   id:string;
-  
+
 }
 @Component({
   selector: 'app-tableau-arch',
@@ -22,30 +24,33 @@ export class TableauArchComponent implements OnInit{
   pages: number = 1;
   searchText:any
   getId: any;
+  donne:User[]= [];
 
   updateForm!: FormGroup;
-  
+
   constructor(
     public formBuilder: FormBuilder,
     private ngZone: NgZone,
-   
-    
+    private userService: UserService
+
     ) {
       this.updateForm = this.formBuilder.group({
         etat: [true]
       });
-    } donne:donneeliste[]= [];
+    }
 
   ngOnInit(): void {
-    
+
     this.getDonnees()
   }
 
   getDonnees = () => {
-    this.donne = liste 
+    this.userService.getUsersArchive().subscribe((users: User[]) => {
+      this.donne = users;
+    });
 }
 restaurer( id: String) {
 
-  console.log(id); 
+  console.log(id);
 }
 }
