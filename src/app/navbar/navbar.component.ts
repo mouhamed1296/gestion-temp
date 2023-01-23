@@ -9,4 +9,12 @@ import { DONNE } from '../dashboard/dashboard.component';
 })
 export class NavbarComponent {
   profil:DONNE[]=profils;
+
+  /* logOut(){
+    this.userService.getLogOut();
+    // this.ngOnInit()
+    this.router.navigateByUrl('login')
+    
+    }
+     */
 }

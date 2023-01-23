@@ -112,7 +112,11 @@ export class TableauAdmComponent implements OnInit {
   });
  }
 
- delete(id: string) {
+ delete(id: string){
+  this.userService.delete(id).subscribe(()=> {
+  
+this.getDonnees()
+ })
   //if(confirm("Voulez-vous vraiment supprimer ?")) {
   //console.log(this.updateForm.value.etat);
    if (window.confirm('Voulez-vous vraiment supprimer ?')) {

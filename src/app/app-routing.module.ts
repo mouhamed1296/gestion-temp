@@ -15,7 +15,7 @@ import { ModificationComponent } from './modification/modification.component';
 const routes: Routes = [
   { path: "connection", pathMatch: "full", component: ConnectionComponent},
   { path: "dashboard", component: DashboardComponent },
-  /* { path: "modification", component: ModificationComponent }, */
+  { path: "modification", component: ModificationComponent }, 
   { path: "inscription", component: InscriptionComponent},
   {path: 'tableau-adm',component:TableauAdmComponent},
   {path: 'modifier/:id',component:ModifierComponent},
