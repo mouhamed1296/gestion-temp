@@ -23,4 +23,7 @@ export class UserService {
   register(user: Partial<User>): Observable<any> {
     return this.http.post(this.API_BASE_URL, user, {headers: this.headers})
   }
+  getConnectedUser(email: string): Observable<Partial<User>> {
+    return this.http.get(this.API_BASE_URL + "/" + email, {headers: this.headers});
+  }
 }

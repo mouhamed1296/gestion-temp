@@ -1,26 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, ChangeDetectionStrategy, Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup,Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { UserService } from '../services/user.service';
 import { User } from '../models/user.model';
+import { Router } from '@angular/router';
 
-
-interface donneeliste {
-  prenom:string;
-  nom:string;
-  email:string;
-  role:string;
-  matricule:string;
-  id:string;
-
-
-}
 @Component({
   selector: 'app-tableau-adm',
   templateUrl: './tableau-adm.component.html',
-  styleUrls: ['./tableau-adm.component.css']
+  styleUrls: ['./tableau-adm.component.css'],
+
 })
-export class TableauAdmComponent implements OnInit {
+export class TableauAdmComponent implements OnInit, AfterViewInit {
   donne: User[]= [];
   pages: number = 1;
   searchText:any
@@ -33,7 +24,8 @@ export class TableauAdmComponent implements OnInit {
 
   constructor(
     public formBuilder: FormBuilder,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
 
   ) {
     this.registerForm = this.formBuilder.group({
@@ -44,11 +36,12 @@ export class TableauAdmComponent implements OnInit {
       });
  }
 
+ ngAfterViewInit() {
+    this.getDonnees()
+ }
 
   ngOnInit(): void {
-
-     this.getDonnees()
-
+    this.getDonnees()
      this.registerForm = this.formBuilder.group({
       prenom: ['', Validators.required],
       nom: ['', Validators.required],
