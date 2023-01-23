@@ -17,6 +17,7 @@ export class UserService {
   getUsersArchive(): Observable<User[]> {
     return this.http.get<User[]>(this.API_BASE_URL + "/archive", {headers: this.headers});
   }
+
   changerRole(id: string) {
     return this.http.patch(this.API_BASE_URL + "/switch/" +id, {}, {headers: this.headers})
   }
@@ -26,4 +27,20 @@ export class UserService {
   getConnectedUser(email: string): Observable<Partial<User>> {
     return this.http.get(this.API_BASE_URL + "/" + email, {headers: this.headers});
   }
+
+  delete(id: string) {
+    return this.http.delete(this.API_BASE_URL + "/" +id)
+  }
+ modifUsers(id: string, user:any) {
+  return this.http.patch(this.API_BASE_URL + "/" +id,user, {})
+ }
+
+  update(id: string ,data: any){
+    return this.http.patch(this.API_BASE_URL + "/" +id, {})
+  }
+
+  restaure(id: string){
+    return this.http.patch(this.API_BASE_URL + "/restore/" +id, {})
+  }
 }
+
