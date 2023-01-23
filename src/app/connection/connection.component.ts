@@ -27,7 +27,7 @@ export class ConnectionComponent {
     this.authService.login(this.profileForm.value).subscribe({
       //Si la connexion est réussie cette fonction s'exécute
       next: (response) => {
-        console.log(response);
+        localStorage.setItem('access_token', response.access_token);
         this.router.navigateByUrl('/dashboard');
       },
       //S'il y a une erreur lors de la connexion cette fonction s'exécute

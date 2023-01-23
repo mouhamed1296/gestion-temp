@@ -43,6 +43,7 @@
                 </tr>
             </thead>
             <tbody>
+<<<<<<< HEAD
                 <tr class="border boder-2 "
                     *ngFor="let donnes of donne  | filter:searchText | paginate: { itemsPerPage: 5, currentPage: pages }">
                     <td class="p-4 w-4">
@@ -110,8 +111,23 @@
                     </td>
 
 
+=======
+                <ng-container *ngIf="searchText; else elseBlock">
+                  <tr class="border boder-2 "
+                    *ngFor="let donnes of donne | search:searchText">
+                    <app-liste [donnes]="donnes" [changeRole]="changeRole"
+                     [delete]="delete" [recupereDonne]="recupereDonne"></app-liste>
+>>>>>>> dev
                 </tr>
+                </ng-container>
 
+                <ng-template #elseBlock>
+                  <tr class="border boder-2 "
+                    *ngFor="let donnes of donne | paginate: { itemsPerPage: 5, currentPage: pages }">
+                    <app-liste [donnes]="donnes" [changeRole]="changeRole"
+                     [delete]="delete" [recupereDonne]="recupereDonne"></app-liste>
+                </tr>
+                </ng-template>
 
 
             </tbody>
@@ -133,7 +149,7 @@
          <h1 class="font-bold" style="margin-left:47%" >Modification</h1>
 <div class="flex  gap-5 justify-center mt-4 mb-6" *ngIf="!tabOn">
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-        <input type="text" formControlName="id" hidden >
+        
         <div class="mb-2">
             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Prenom</label>
             <input type="text" formControlName="prenom" class="form-control"
