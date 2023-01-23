@@ -32,7 +32,7 @@ export class UserService {
     return this.http.delete(this.API_BASE_URL + "/" +id)
   }
  modifUsers(id: string, user:any) {
-  return this.http.patch(this.API_BASE_URL + "/switch/" +id,user, {})
+  return this.http.patch(this.API_BASE_URL + "/" +id,user, {})
  }
   
   update(id: string ,data: any){

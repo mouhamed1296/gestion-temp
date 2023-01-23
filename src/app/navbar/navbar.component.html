@@ -42,10 +42,11 @@
                           mot de passe</a>
                     </li>
                     <li>
+                     <div ng="let user of findAll">
                        <a routerLink="/modification"
                           class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white text-sm">modifier
-                          profil</a>
-
+                          profil(click)="getUsers(user._id,user.email,user.prenom,user.nom)" </a>
+                        </div>
                  </ul>
 
               </div>

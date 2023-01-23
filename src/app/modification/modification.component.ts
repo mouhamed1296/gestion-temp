@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import modifier from '../modifie.json';
 import { UserService } from '../services/user.service';
 
+
 interface modification{
   
 }
@@ -20,6 +21,7 @@ export class ModificationComponent {
   spin=false;
  showForm = false; 
   user: any;
+  findAll:any;
   constructor(private formBuilder: FormBuilder, private userService: UserService){
       this.registerForm = this.formBuilder.group({
         id:[''],
@@ -32,40 +34,67 @@ export class ModificationComponent {
  
 } 
 onSubmit(){
-  this.submitted = true
-  this.spin = true
-   if(this.registerForm.invalid){
-    this.spin = false
-    return ;
-  }
-  const id = this.registerForm.value.id;
-  for (const iterator of this.user) {
-    console.log(iterator.email  )
-    if(iterator.email == this.registerForm.value.email && iterator._id != id){
+ 
+ 
+}
+ngOnInit(): void {
+
+  this.userService.getUsers().subscribe(
+    data => {
+
+      this.user = data;
+
+      this.findAll = this.user.filter((e: any) => e.etat == true)
+      console.log(this.findAll)
+    }
+  );
+
+}
+getUsers(id:any,email:any,prenom:any,nom:any){
+  this.showForm = true;
+        this.registerForm = this.formBuilder.group({
+            id:[id],
+            prenom: [prenom, [Validators.required]],
+            nom: [nom, [Validators.required]],
+            email: [email, [Validators.required,Validators.email]],
+          });
       
-      setTimeout(() => {
-       
-      }, 2000);
-      return;
+    
+  
+    for (const iterator of this.findAll) {
+      id = iterator._id
+    }
+}
+  modifUsers (){
+    const id =  this.registerForm.value.id;
+    for (const iterator of this.user) {
+      this.submitted = true
+      this.spin = true
+     if(this.registerForm.invalid){
+      this.spin = false
+      return ;
     }
   }
-
-  const user= {
+  
+   const user ={
+    nom : this.registerForm.value.nom,
     prenom: this.registerForm.value.prenom,
-    nom: this.registerForm.value.nom,
     email: this.registerForm.value.email
+   }
+   
+   this.userService.modifUsers(id,user).subscribe(
+  
+     data=>{
+  
+      this.ngOnInit();
+      this.showForm = false
+    },
+    error =>{
+      console.log(error )
+    }
+   );
   }
-
-this.userService.modifUsers(id, user).subscribe(
-  data=>{
-    
-  }
-);
-
 }
-
-}
-
 
 
 
