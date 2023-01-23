@@ -118,26 +118,6 @@ export class TableauAdmComponent implements OnInit {
   });
  }
 
-<<<<<<< HEAD
- delete(id: string){
-  this.userService.delete(id).subscribe(()=> {
-  
-this.getDonnees()
- })
-  //if(confirm("Voulez-vous vraiment supprimer ?")) {
-  //console.log(this.updateForm.value.etat);
-   if (window.confirm('Voulez-vous vraiment supprimer ?')) {
-    //this.crudService.updateUtilisateur(id, this.updateForm.value).subscribe(
-      () => {
-        console.log('Data updated successfully!');
-        //this.success = 'Archivé avec succés';
-        //setInterval(() => { this.success = ''}, 3000);
-        this.getDonnees();
-         //this.ngZone.run(() => this.router.navigateByUrl('active'));
-      }
-    ;/* } */
-  }}
-=======
  delete(id: string) {
 
   this.userService.delete(id).subscribe(()=>{
@@ -156,7 +136,6 @@ this.getDonnees()
       
     })
   }
->>>>>>> dev
  }
 
 
