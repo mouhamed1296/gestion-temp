@@ -7,6 +7,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
+  modifier(id: any, User: any) {
+    throw new Error('Method not implemented.');
+  }
   API_BASE_URL = 'http://localhost:3001/users';
   headers = new HttpHeaders().set('content-type', 'application/json');
   constructor(private http:HttpClient) {}
@@ -29,11 +32,11 @@ export class UserService {
   }
   
   update(id: string ,data: any){
-    return this.http.patch(this.API_BASE_URL + "/" +id, {})
+    return this.http.patch(this.API_BASE_URL + "/" +id, data)
   }
   
   restaure(id: string){
-    return this.http.patch(this.API_BASE_URL + "/restore/" +id, {})
+    return this.http.patch(this.API_BASE_URL + "/restore/" +id, {}, {headers: this.headers})
   }
 
 }
