@@ -36,11 +36,11 @@ export class UserService {
  }
   
   update(id: string ,data: any){
-    return this.http.patch(this.API_BASE_URL + "/" +id, {})
+    return this.http.patch(this.API_BASE_URL + "/" +id, data)
   }
   
   restaure(id: string){
-    return this.http.patch(this.API_BASE_URL + "/restore/" +id, {})
+    return this.http.patch(this.API_BASE_URL + "/restore/" +id, {}, {headers: this.headers})
   }
 }
 
