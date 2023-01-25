@@ -1,6 +1,6 @@
 import { Component, OnInit,NgZone} from '@angular/core';
-import { FormBuilder,FormGroup } from '@angular/forms';
-import liste from '../modele/liste.json';
+import { FormBuilder,FormGroup } from '@angular/forms';/* 
+import liste from '../modele/liste.json'; */
 import { UserService } from '../services/user.service';
 import { User } from '../models/user.model';
 
@@ -49,8 +49,11 @@ export class TableauArchComponent implements OnInit{
       this.donne = users;
     });
 }
-restaurer( id: String) {
+restaurer = ( id: string)  => {
 
-  console.log(id);
-}
+  this.userService.restaure(id).subscribe(()=>{
+    this.getDonnees()
+  })
+ 
+};
 }
