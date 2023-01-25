@@ -4,6 +4,7 @@ import Swal from 'sweetalert2';
 import { UserService } from '../services/user.service';
 import { User } from '../models/user.model';
 import { Router } from '@angular/router';
+import { SocketService } from '../services/socket.service';
 
 @Component({
   selector: 'app-tableau-adm',
@@ -16,7 +17,7 @@ export class TableauAdmComponent implements OnInit, AfterViewInit {
   pages: number =1;
   searchText:any
 
-  
+
   getId: any;
   registerForm!: FormGroup;
   submitted = false;
@@ -25,17 +26,18 @@ export class TableauAdmComponent implements OnInit, AfterViewInit {
   constructor(
     public formBuilder: FormBuilder,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private socketService: SocketService
 
   ) {
     this.registerForm = this.formBuilder.group({
-        
+
         prenom: ['',],
         nom: [''],
         email: [''],
       });
 
-      
+
  }
 
  ngAfterViewInit() {
@@ -43,6 +45,10 @@ export class TableauAdmComponent implements OnInit, AfterViewInit {
  }
 
   ngOnInit(): void {
+    this.socketService.onSocketConnected().subscribe((data) => {
+        console.log(data);
+
+    })
     this.getDonnees()
      this.registerForm = this.formBuilder.group({
       prenom: ['', Validators.required],
@@ -76,7 +82,7 @@ export class TableauAdmComponent implements OnInit, AfterViewInit {
 
   Swal.fire({
       title: 'Voulez-vous vraiment modifier cet utilisateur?',
-    
+
         icon: 'warning',
           confirmButtonColor: "#B82010",
             cancelButtonColor: "green" ,
@@ -88,20 +94,20 @@ export class TableauAdmComponent implements OnInit, AfterViewInit {
 
 
   this.registerForm = this.formBuilder.group({
-  
+
     prenom: [prenom, Validators.required ],
     nom: [nom, Validators.required],
     email: [email, [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
   });
 
- 
+
 }
 })
   this.tabOn = false;
 
  }
 
- 
+
 
  onSubmit() {
   this.registerForm.setValue({
@@ -126,7 +132,7 @@ export class TableauAdmComponent implements OnInit, AfterViewInit {
     console.log(this.registerForm.value)
     this.userService.update(id,this.registerForm.value).subscribe(()=> {
       this.getDonnees()
-      
+
     })
   }
  }
