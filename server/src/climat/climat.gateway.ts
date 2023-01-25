@@ -38,6 +38,10 @@ export class ClimatGateway implements OnGatewayConnection, OnGatewayDisconnect {
 
     const fullDate = `${day}/${month}/${year}`;
     const createdClimat = new this.climatModel({
+      '8h': {
+        temperature: temperature,
+        humidity: humidity,
+      },
       temperature: temperature,
       humidity: humidity,
       date: fullDate,

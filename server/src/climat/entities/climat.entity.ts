@@ -5,11 +5,23 @@ export type ClimatDocument = HydratedDocument<Climat>;
 
 @Schema({ collection: 'climat' })
 export class Climat {
-  @Prop()
-  temperature: number;
+  @Prop(raw({ temperature: Number, humidity: Number }))
+  '8h': {
+    temperature: number;
+    humidity: number;
+  };
 
-  @Prop()
-  humidity: number;
+  @Prop(raw({ temperature: Number, humidity: Number }))
+  '12h': {
+    temperature: number;
+    humidity: number;
+  };
+
+  @Prop(raw({ temperature: Number, humidity: Number }))
+  '19h': {
+    temperature: number;
+    humidity: number;
+  };
 
   @Prop()
   date: string;

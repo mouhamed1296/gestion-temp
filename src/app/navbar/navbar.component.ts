@@ -3,6 +3,7 @@ import profils from '../profil.json';
 import { DONNE } from '../dashboard/dashboard.component';
 import { AuthService } from '../services/auth.service';
 import { User } from '../models/user.model';
+import { faPersonWalkingArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-navbar',
@@ -11,6 +12,7 @@ import { User } from '../models/user.model';
 })
 export class NavbarComponent implements OnInit {
   profil!: any;
+  logoutIcon = faPersonWalkingArrowRight
 
   constructor(private authService:AuthService) {}
 

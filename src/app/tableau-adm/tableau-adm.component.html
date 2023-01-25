@@ -15,7 +15,7 @@
     </div>
 
     <div class="w-full h-full"> <!-- overflow-x-auto relative shadow-md sm:rounded-lg -->
-        <table class="w-full text-sm text-left text-dark-500 dark:text-dark-400 ">
+        <table aria-describedby="tableau utilisateur" class="w-full text-sm text-left text-dark-500 dark:text-dark-400 ">
             <thead class="text-xs text-white uppercase bg-blue-500 dark:bg-blue-500 dark:text-dark-400">
                 <tr>
                     <th scope="col" class="p-4">
@@ -179,51 +179,3 @@
     </form>
 </div>
 </div>
-
-
-
-
-
-
-<!--<div class="mb-2">
-    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Prenom</label>
-    <input type="text" formControlName="prenom" class="form-control"
-        [ngClass]="{ 'is-invalid': submitted && registerForm.controls['prenom'].errors }"
-        class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        required>
-
-    <div *ngIf="registerForm.controls['prenom'].errors" class="invalid-feedback">
-        <div *ngIf="registerForm.controls['prenom']['errors']['required']" class="text-red-600">Ce champ est requis</div>
-    </div>
-    <div *ngIf="registerForm.controls.prenom.dirty &&  registerForm.controls.prenom.errors && registerForm.controls.prenom.errors.whitespace && !registerForm.controls.prenom.errors.required" class="text-red-600">
-        <p>Ce champ est invalide</p>
-      </div>
-</div>
-
- <div class="mb-2">
-    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nom</label>
-    <input type="text" formControlName="nom" class="form-control"
-        [ngClass]="{ 'is-invalid': submitted && f['nom'].errors }"
-        class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        required>
-    <div *ngIf=" f['nom'].errors" class="invalid-feedback">
-        <div *ngIf="f['nom']['errors']['required']" class="text-red-600">Ce champ est requis</div>
-    </div>
-
-    <div *ngIf="f['nom'].dirty &&  f['nom'].errors && f['nom'].errors.whitespace && !f['nom']['errors']['required']" class="text-red-600">
-        <p>Ce champ est invalide</p>
-      </div>
-</div>
-<div class="mb-2">
-    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">email</label>
-    <input type="text" formControlName="email" class="form-control"
-        [ngClass]="{ 'is-invalid': submitted && f['email'].errors }"
-        class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        required>
-
-    <div *ngIf=" f['email'].errors" class="invalid-feedback">
-        <div *ngIf="f['email']['errors']['required']" class="text-red-600">Email is required</div>
-        <div *ngIf="f['email']['errors']['email']" class="text-red-600">Email must be a valid email address</div>
-    </div>
-</div>
- -->

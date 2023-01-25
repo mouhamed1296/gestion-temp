@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import dashboard from '../histo.json';
 import tableau from '../tableauhis.json';
 import profils from '../profil.json';
+import { SocketService } from '../services/socket.service';
 
 
 
@@ -35,8 +36,13 @@ export class DashboardComponent {
   histo: historique[] = dashboard;
   tableauhis: tab[] = tableau;
   profil: DONNE[] = profils;
-  ngOnInit(): void {
 
+  constructor(private socketService:SocketService){}
+
+  ngOnInit(): void {
+    this.socketService.onSocketConnected().subscribe((data) => {
+      console.log(data);
+    })
   }
 
 

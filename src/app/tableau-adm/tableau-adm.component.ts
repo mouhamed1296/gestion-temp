@@ -78,7 +78,7 @@ export class TableauAdmComponent implements OnInit {
 
 
     this.userService.getUsers().subscribe((donne:any) => {
-      this.donne = donne
+      this.donne = donne.filter((d: any) => d.email != JSON.parse(localStorage.getItem('connectedUser') as unknown as any).email)
     })
 
 
@@ -169,8 +169,23 @@ this.tabOn = false;
                }).then((result) => {
 
         if(result.isConfirmed){
+          const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 2000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer)
+              toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+          })
 
   this.userService.delete(id).subscribe(()=>{
+    Toast.fire({
+      icon: 'success',
+      title: `Archivé avec succés`
+    })
     this.getDonnees()
   })
 }
@@ -207,6 +222,10 @@ this.tabOn = false;
           icon: 'success',
           title: ` modifié avec succés`
         })
+
+        setTimeout(() => {
+          this.tabOn = true
+        }, 3500)
       },
       error: (err) => {
         this.signupError = err.error.message
