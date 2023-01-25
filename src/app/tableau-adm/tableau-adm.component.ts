@@ -163,12 +163,12 @@ this.tabOn = false;
                 cancelButtonText: 'Annuler'
                }).then((result) => {
 
-
+        if(result.isConfirmed){
 
   this.userService.delete(id).subscribe(()=>{
     this.getDonnees()
   })
-
+}
 })
 
 }
