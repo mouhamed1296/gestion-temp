@@ -1,10 +1,10 @@
-<div class=" h-screen flex flex-col gap-5 justify-center  mt-6 mb-6" >
+<div class=" h-screen flex flex-col gap-5 justify-center  mt-6 mb-6 px-32 py-32" >
     <div class="search-hero py-10" style="display: flex;">
         <div class="search-hero ">
             <input class="form-controlMe" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
                 placeholder="Rechercher...">
         </div>
-        
+
     </div>
 
     <div class="w-full h-full"> <!-- overflow-x-auto relative shadow-md sm:rounded-lg -->
@@ -59,7 +59,7 @@
 
                     <td class="flex items-center py-4 px-6 space-x-3">
 
-                        
+
 
                         <button (click)="restaurer(donnes._id)" style="border: none;background-color: white;" type="submit">
                             <svg width="25" height="25" viewBox="0 0 46 63" fill="none"
@@ -69,7 +69,7 @@
                                     fill="black" />
                             </svg>
                         </button>
-                      
+
                     </td>
 
 
@@ -81,15 +81,15 @@
         </table>
 
     </div>
-    <div class="container forpagination  "> <!-- fixed-bottom justify-content-center -->
+    <div class="flex justify-center  "> <!-- fixed-bottom justify-content-center -->
         <div class="pagination">
             <pagination-controls (pageChange)="pages = $event"></pagination-controls>
         </div>
     </div>
 
 
-    
-    
+
+
 </div>
 
 
@@ -202,7 +202,7 @@
 
 
 
-<!-- 
+<!--
 
 <!DOCTYPE html>
 <html lang="en">

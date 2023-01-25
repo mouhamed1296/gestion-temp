@@ -25,7 +25,14 @@ import { SearchPipe } from './pipes/search.pipe';
 import { FilterInactivePipe } from './pipes/filter-inactive.pipe';
 import { SearchInactifPipe } from './pipes/search-inactif.pipe';
 import { ListeComponent } from './tableau-adm/liste/liste.component';
-
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+const config: SocketIoConfig = {
+	url: 'http://localhost:3001', // socket server url;
+	options: {
+		transports: ['websocket']
+	}
+}
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,10 +58,12 @@ import { ListeComponent } from './tableau-adm/liste/liste.component';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    SocketIoModule.forRoot(config),
     HttpClientModule,
     NgxPaginationModule,
     Ng2SearchPipeModule,
     FormsModule,
+    FontAwesomeModule,
   ],
   providers: [
     {

@@ -28,7 +28,7 @@
               </div>
               <div class="flex justify-center items-center mt-12">
                   <div class="flex gap-2 font-bold ">
-                 
+
             <div class="h-10 w-8 ">
                     <button *ngFor="let imageButton of imageButtonOff; " (click)="onClick(imageButton)" class="button">
            <img src="{{offsrc}}" alt="">
@@ -59,13 +59,10 @@
             <div class="absolute -top-8 rounded-md bg-blue-500 border-2 px-20 py-2">
               <span class="font-bold text-white text-center text-4xl">
                   {{histor.Heure}}
-
               </span>
             </div>
-            <div>
-              <span class="flex ">
-                  <img src="{{histor.img}}" alt="" class="w-fit ">
-              </span>
+            <div class="w-32 h-32">
+                <img src="{{histor.img}}" alt="">
             </div>
             <div class="flex gap-28 justify-center items-center">
               <div class="flex flex-col justify-center items-center">
@@ -95,7 +92,7 @@
   </div>
   <!--   /Historique/ -->
   <!-- <div> -->
-      <div class="flex flex-col gap-5 bg-white shadow-md rounded-md p-5">
+      <div class="flex flex-col gap-5 bg-white shadow-md rounded-md p-10">
         <h1 class="flex font-bold text-2xl h-5" >Historique</h1>
         <div class="flex flex-col gap-5 w-full">
 
@@ -110,7 +107,7 @@
 
             <div class="flex">
               <div class="w-44 flex text-2xl">
-                <img class="w-8 h-5" src="assets/temp.png" alt="">
+                <img class="w-8 h-10 object-fill" src="assets/temp.png" alt="">
               </div>
               <div *ngFor="let tempt of tableauhis " class="w-44 flex text-2xl h-5">
                   <span>{{tempt.temperature}} </span>
@@ -119,7 +116,7 @@
 
             <div class="flex">
             <div class="w-44 flex text-2xl">
-              <img class="w-8 h-5" src="assets/humidite.png" alt="">
+              <img class="w-8 h-10 object-fill" src="assets/humidite.png" alt="">
             </div>
               <div *ngFor="let tempt of tableauhis " class="w-44 flex text-2xl h-5">
                   <span> {{tempt.humidite}}</span>

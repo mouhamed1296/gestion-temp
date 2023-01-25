@@ -7,9 +7,6 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
-  detele(id: string) {
-    throw new Error('Method not implemented.');
-  }
   API_BASE_URL = 'http://localhost:3001/users';
   headers = new HttpHeaders().set('content-type', 'application/json');
   constructor(private http:HttpClient) {}
@@ -27,6 +24,9 @@ export class UserService {
   register(user: Partial<User>): Observable<any> {
     return this.http.post(this.API_BASE_URL, user, {headers: this.headers})
   }
+  getConnectedUser(email: string): Observable<Partial<User>> {
+    return this.http.get(this.API_BASE_URL + "/" + email, {headers: this.headers});
+  }
 
   delete(id: string) {
     return this.http.delete(this.API_BASE_URL + "/" +id)
@@ -34,11 +34,11 @@ export class UserService {
  modifUsers(id: string, user:any) {
   return this.http.patch(this.API_BASE_URL + "/" +id,user, {})
  }
-  
+
   update(id: string ,data: any){
     return this.http.patch(this.API_BASE_URL + "/" +id, data)
   }
-  
+
   restaure(id: string){
     return this.http.patch(this.API_BASE_URL + "/restore/" +id, {}, {headers: this.headers})
   }
