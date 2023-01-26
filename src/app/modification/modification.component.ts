@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import modifier from '../modifie.json';
 import { UserService } from '../services/user.service';
 
@@ -15,29 +15,51 @@ interface modification{
 })
 export class ModificationComponent {
 
+  profil!: any;
   registerForm!:FormGroup;
   title = 'angularvalidate';
   submitted = false;
   spin=false;
- showForm = false; 
+  showForm = false; 
   user: any;
   findAll:any;
+  
   constructor(private formBuilder: FormBuilder, private userService: UserService){
-      this.registerForm = this.formBuilder.group({
+      /*  this.registerForm = this.formBuilder.group({
         id:[''],
         prenom: ['', [Validators.required]],
         nom: ['', [Validators.required]],
         email:['',[Validators.required,Validators.email]],
         
-      })
+
+      }) */
+
+     
+        this.registerForm = this.formBuilder.group({
+          prenom: ['', [Validators.required, this.noWhitespaceValidator]],
+          nom: ['', [Validators.required, this.noWhitespaceValidator]],
+          email: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+      
+        });
     
- 
 } 
+
+noWhitespaceValidator(control: FormControl) {
+  const isWhitespace = (control.value || '').trim().length === 0;
+  const isValid = !isWhitespace;
+  return isValid ? null : { 'whitespace': true };
+}
 onSubmit(){
  
- 
+  this.registerForm.setValue({
+    prenom: [''],
+    nom: [''],
+    email: [''],
+  });
 }
+
 ngOnInit(): void {
+  this.profil = JSON.parse(localStorage.getItem('connectedUser') as unknown as any);
 
   this.userService.getUsers().subscribe(
     data => {
@@ -48,53 +70,48 @@ ngOnInit(): void {
       console.log(this.findAll)
     }
   );
+  
 
 }
-getUsers(id:any,email:any,prenom:any,nom:any){
-  this.showForm = true;
-        this.registerForm = this.formBuilder.group({
-            id:[id],
-            prenom: [prenom, [Validators.required]],
-            nom: [nom, [Validators.required]],
-            email: [email, [Validators.required,Validators.email]],
-          });
-      
-    
-  
-    for (const iterator of this.findAll) {
-      id = iterator._id
-    }
-}
+
   modifUsers (){
+   
+    this.submitted = true
+  this.spin = false
+   if(!this.registerForm.invalid){
+  this.spin = false
+  return ;
+} 
     const id =  this.registerForm.value.id;
-    for (const iterator of this.user) {
-      this.submitted = true
-      this.spin = true
-     if(this.registerForm.invalid){
-      this.spin = false
-      return ;
-    }
-  }
+    console.log("modif");
+    
   
    const user ={
     nom : this.registerForm.value.nom,
     prenom: this.registerForm.value.prenom,
     email: this.registerForm.value.email
    }
-   
-   this.userService.modifUsers(id,user).subscribe(
-  
-     data=>{
-  
-      this.ngOnInit();
-      this.showForm = false
-    },
-    error =>{
-      console.log(error )
-    }
-   );
+   this.showForm = true
+   if(this.registerForm.invalid){
+    return ;
   }
+
+  this.userService.modifUsers(id,user).subscribe(
+   {
+    next: (data) => {
+      console.log(data);
+      
+    },
+    error: (error) => {
+      console.log(error);
+      
+    }
+   }
+  );
 }
+
+  }
+
 
 
 
