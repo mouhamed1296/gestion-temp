@@ -9,6 +9,7 @@ export class SocketService {
   constructor(private socket: Socket) { }
 
   onSocketConnected() {
+    this.socket.emit('connection', 'connected')
     /* this.socket.on('connection', (socket: Socket) => {
       console.log("connection established");
 
