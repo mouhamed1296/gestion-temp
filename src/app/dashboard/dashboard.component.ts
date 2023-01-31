@@ -36,12 +36,29 @@ export class DashboardComponent {
   histo: historique[] = dashboard;
   tableauhis: tab[] = tableau;
   profil: DONNE[] = profils;
+  climatRealtime: {temperature: string,  humidity: string} = {temperature: '--',  humidity: '--'}
+  manuel: boolean = false
 
   constructor(private socketService:SocketService){}
 
   ngOnInit(): void {
-    this.socketService.onSocketConnected().subscribe((data) => {
+    this.socketService.onSocketConnected().subscribe((data: any) => {
       console.log(data);
+      this.climatRealtime = data
+
+    
+      if (this.climatRealtime.temperature >= "28"){
+        this.onsrc = 'assets/on.png';
+        this.messageText = 'ON';
+        this.imageSrc = 'assets/fan2.gif';
+      } else {
+        if (!this.manuel) {
+        this.offsrc = 'assets/off.png';
+        this.messageText = 'OFF';
+        this.imageSrc = 'assets/fan.png';
+        
+      }
+     }
     })
   }
 
@@ -56,6 +73,7 @@ export class DashboardComponent {
 
 
   onClick(imageNameObject: { src: string; name: string; srcs: string; srcr: string; }) {
+    this.manuel = true
     this.imageSrc = imageNameObject.src;
     this.onsrc = imageNameObject.srcs;
     this.offsrc = imageNameObject.srcr;

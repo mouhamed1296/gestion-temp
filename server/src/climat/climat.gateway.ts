@@ -42,7 +42,10 @@ export class ClimatGateway implements OnGatewayConnection, OnGatewayDisconnect {
     const temperature = 30;
     const humidity = 20;
     parser.on('data', (data) => {
-      console.log(data);
+      
+      const climat = {temperature: data.split('/')[0], humidity: data.split('/')[1]}
+      client.emit('connection', climat);
+      console.log(climat);
       const fullDate = `${day}/${month}/${year}`;
       console.log(hours, minutes);
       if (hours == 16 && minutes == 9 && seconds == 0) {
