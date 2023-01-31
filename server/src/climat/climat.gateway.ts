@@ -48,7 +48,7 @@ export class ClimatGateway implements OnGatewayConnection, OnGatewayDisconnect {
       console.log(climat);
       const fullDate = `${day}/${month}/${year}`;
       console.log(hours, minutes);
-      if (hours == 8 && minutes == 0 && seconds == 0) {
+      if (hours == 16 && minutes == 9 && seconds == 0) {
         const createdClimat = new this.climatModel({
           '8h': {
             temperature: temperature,
