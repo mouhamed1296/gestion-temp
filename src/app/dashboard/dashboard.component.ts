@@ -4,6 +4,7 @@ import dashboard from '../histo.json';
 import tableau from '../tableauhis.json';
 import profils from '../profil.json';
 import { SocketService } from '../services/socket.service';
+import { Router } from '@angular/router';
 
 
 
@@ -38,16 +39,20 @@ export class DashboardComponent {
   profil: DONNE[] = profils;
   climatRealtime: {temperature: string,  humidity: string} = {temperature: '--',  humidity: '--'}
   manuel: boolean = false
+  refreshed: boolean = false
 
-  constructor(private socketService:SocketService){}
+  constructor(private socketService:SocketService, private router:Router){}
 
   ngOnInit(): void {
+   /*  if (!this.refreshed && this.climatRealtime.temperature == '--') {
+
+    } */
     this.socketService.onSocketConnected().subscribe((data: any) => {
       console.log(data);
       this.climatRealtime = data
 
-    
-      if (this.climatRealtime.temperature >= "28"){
+
+      /* if (this.climatRealtime.temperature >= "30"){
         this.onsrc = 'assets/on.png';
         this.messageText = 'ON';
         this.imageSrc = 'assets/fan2.gif';
@@ -56,9 +61,9 @@ export class DashboardComponent {
         this.offsrc = 'assets/off.png';
         this.messageText = 'OFF';
         this.imageSrc = 'assets/fan.png';
-        
+
       }
-     }
+     } */
     })
   }
 
@@ -79,7 +84,16 @@ export class DashboardComponent {
     this.offsrc = imageNameObject.srcr;
     this.messageText = imageNameObject.name;
 
-
+    if (imageNameObject.name === "ON") {
+      this.socketService.turFanOn().subscribe((data) => {
+        console.log(data);
+      })
+    }
+    if (imageNameObject.name === "OFF") {
+    this.socketService.turFanOff().subscribe((data) => {
+      console.log(data);
+    })
+  }
   }
 
 }

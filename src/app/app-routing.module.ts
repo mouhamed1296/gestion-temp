@@ -14,18 +14,17 @@ import { AuthGuard } from './guards/auth.guard';
 
 
 const routes: Routes = [
-  { path: "connection", pathMatch: "full", component: ConnectionComponent},
-  { path: "dashboard", component: DashboardComponent },
-  { path: "modification", component: ModificationComponent }, 
+  /* { path: "connection", pathMatch: "full", component: ConnectionComponent}, */
+  /* { path: "modification", component: ModificationComponent }, */
   { path: "", pathMatch: "full", component: ConnectionComponent},
   { path: "dashboard", component: DashboardComponent, canActivate: [AuthGuard] },
-  /* { path: "modification", component: ModificationComponent }, */
-  { path: "inscription", component: InscriptionComponent},
+  { path: "inscription", component: InscriptionComponent, canActivate: [AuthGuard]},
   {path: 'tableau-adm',component:TableauAdmComponent, canActivate: [AuthGuard]},
-  {path: 'modifier/:id',component:ModifierComponent},
-  {path: 'tableau-user',component:TableauUserComponent},
-  {path: 'tableau-arch',component:TableauArchComponent},
-  {path: "modification", component: ModifierComponent},
+ /*  {path: 'modifier/:id',component:ModifierComponent}, */
+  {path: 'tableau-user',component:TableauUserComponent, canActivate: [AuthGuard]},
+  {path: 'tableau-arch',component:TableauArchComponent, canActivate: [AuthGuard]},
+  /* {path: "modification", component: ModifierComponent}, */
+  {path: '**', redirectTo: ""}
 
 
 ];

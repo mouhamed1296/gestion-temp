@@ -30,7 +30,8 @@ export class AuthService {
 
   logout() {
     let removeToken = localStorage.removeItem('access_token');
-    if (removeToken == null) {
+    let removeConnectedUser = localStorage.removeItem('connectedUser');
+    if (removeToken == null && removeConnectedUser == null) {
       this.router.navigate(['/']);
     }
   }

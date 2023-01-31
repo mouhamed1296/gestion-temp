@@ -13,14 +13,20 @@ import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { SerialPort } from 'serialport';
 import { ReadlineParser } from '@serialport/parser-readline';
-const port = new SerialPort({ path: '/dev/ttyS4', baudRate: 9600 });
+const port = new SerialPort({ path: '/dev/ttyACM0', baudRate: 9600 });
 
 const parser = port.pipe(new ReadlineParser({ delimiter: '\r\n' }));
 /* parser.on('data', console.log); */
+port.write('cool');
+parser.write('cool');
+/* parser.drain(() => {
+  console.log('echec');
+}); */
 
 @WebSocketGateway({ cors: true })
 export class ClimatGateway implements OnGatewayConnection, OnGatewayDisconnect {
   logger = new ConsoleLogger();
+  fanOn = '0';
   @WebSocketServer()
   public server: Server;
 
@@ -41,13 +47,35 @@ export class ClimatGateway implements OnGatewayConnection, OnGatewayDisconnect {
     const seconds = date.getSeconds();
     const temperature = 30;
     const humidity = 20;
+    client.on('fanOn', (onData) => {
+      port.write(onData);
+      this.fanOn = onData;
+      port.drain((err) => {
+        console.log(err);
+      });
+    });
+    client.on('fanOff', (offData) => {
+      this.fanOn = offData;
+      port.write(offData);
+      port.drain((err) => {
+        console.log(err);
+      });
+    });
+
     parser.on('data', (data) => {
-      
-      const climat = {temperature: data.split('/')[0], humidity: data.split('/')[1]}
+      //port.write('cool');
+      //console.log(data);
+      port.write(this.fanOn);
+      port.drain((err) => {
+        console.log(err);
+      });
+      this.logger.log(this.fanOn);
+      const climat = {
+        temperature: data.split('/')[0],
+        humidity: data.split('/')[1],
+      };
       client.emit('connection', climat);
-      console.log(climat);
       const fullDate = `${day}/${month}/${year}`;
-      console.log(hours, minutes);
       if (hours == 8 && minutes == 0 && seconds == 0) {
         const createdClimat = new this.climatModel({
           '8h': {

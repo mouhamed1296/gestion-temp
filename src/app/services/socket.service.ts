@@ -16,4 +16,14 @@ export class SocketService {
     }) */
 		return this.socket.fromEvent('connection');
 	}
+
+  turFanOn() {
+    this.socket.emit('fanOn', '1');
+    return this.socket.fromEvent('fanStarted');
+  }
+
+  turFanOff() {
+    this.socket.emit('fanOff', '0');
+    return this.socket.fromEvent('fanStopped');
+  }
 }

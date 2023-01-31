@@ -23,20 +23,6 @@ export class SidebarComponent {
           console.log(user);
           //Vérifier si l'utilisateur est un admin
           this.isAdmin = user.role === 'admin' ? true : false;
-
-          this.userService.getConnectedUser(user.email).subscribe({
-            next: (connectedUser: any) => {
-              console.log(connectedUser);
-
-              localStorage.setItem('connectedUser', JSON.stringify(connectedUser));
-            },
-            error: (err)=> {
-              console.log(err);
-            },
-            complete: () => {
-              console.log("complete");
-            }
-          })
         },
         error: (err)=> {
           console.log(err);
