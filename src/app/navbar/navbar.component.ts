@@ -4,12 +4,9 @@ import { DONNE } from '../dashboard/dashboard.component';
 import { AuthService } from '../services/auth.service';
 import { User } from '../models/user.model';
 import { faPersonWalkingArrowRight } from '@fortawesome/free-solid-svg-icons';
-<<<<<<< HEAD
 import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
-=======
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
->>>>>>> dev
+/* import { FormBuilder, FormGroup, Validators } from '@angular/forms'; */
 
 @Component({
   selector: 'app-navbar',
@@ -62,7 +59,7 @@ throw new Error('Method not implemented.');
     this.dropdown = true
   }
 
-  getUsers(id:any,email:any,prenom:any,nom:any){
+  /* getUsers(id:any,email:any,prenom:any,nom:any){
     this.showForm = true;
           this.registerForm = this.formBuilder.group({
               id:[id],
@@ -71,7 +68,7 @@ throw new Error('Method not implemented.');
               email: [email, [Validators.required,Validators.email]],
             });
 
-  }
+  } */
 
   //Déconnexion
   logout(): void {
