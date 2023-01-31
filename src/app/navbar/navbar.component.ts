@@ -4,8 +4,12 @@ import { DONNE } from '../dashboard/dashboard.component';
 import { AuthService } from '../services/auth.service';
 import { User } from '../models/user.model';
 import { faPersonWalkingArrowRight } from '@fortawesome/free-solid-svg-icons';
+<<<<<<< HEAD
 import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
+=======
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+>>>>>>> dev
 
 @Component({
   selector: 'app-navbar',
@@ -13,6 +17,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+user: any;
+getUserPassword(arg0: any) {
+throw new Error('Method not implemented.');
+}
   profil!: any;
   logoutIcon = faPersonWalkingArrowRight
   dropdown: boolean = false
@@ -52,6 +60,17 @@ export class NavbarComponent implements OnInit {
       this.router.navigate(['dashboard']);
   });
     this.dropdown = true
+  }
+
+  getUsers(id:any,email:any,prenom:any,nom:any){
+    this.showForm = true;
+          this.registerForm = this.formBuilder.group({
+              id:[id],
+              prenom: [prenom, [Validators.required]],
+              nom: [nom, [Validators.required]],
+              email: [email, [Validators.required,Validators.email]],
+            });
+
   }
 
   //Déconnexion
