@@ -34,6 +34,10 @@ export class UserService {
  modifUsers(id: string, user:any):Observable<any> {
   return this.http.patch(this.API_BASE_URL + "/" +id,user, {})
  }
+ modifpassword(id: string, user:any):Observable<any> {
+  return this.http.patch(this.API_BASE_URL + "/" +id,user, {})
+ }
+
 
   update(id: string ,data: any){
     return this.http.patch(this.API_BASE_URL + "/" +id, data)

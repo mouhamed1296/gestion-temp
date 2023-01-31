@@ -27,6 +27,7 @@ import { SearchInactifPipe } from './pipes/search-inactif.pipe';
 import { ListeComponent } from './tableau-adm/liste/liste.component';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ModifprofilComponent } from './modifprofil/modifprofil.component';
 const config: SocketIoConfig = {
 	url: 'http://localhost:3001', // socket server url;
 	options: {
@@ -53,6 +54,7 @@ const config: SocketIoConfig = {
     FilterInactivePipe,
     SearchInactifPipe,
     ListeComponent,
+    ModifprofilComponent,
   ],
   imports: [
     BrowserModule,

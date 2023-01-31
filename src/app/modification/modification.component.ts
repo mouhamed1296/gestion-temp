@@ -23,42 +23,41 @@ export class ModificationComponent {
   showForm = false; 
   user: any;
   findAll:any;
+signupError: any;
   
   constructor(private formBuilder: FormBuilder, private userService: UserService){
-      /*  this.registerForm = this.formBuilder.group({
+       this.registerForm = this.formBuilder.group({
         id:[''],
-        prenom: ['', [Validators.required]],
+        prenom: ['', Validators.required],
         nom: ['', [Validators.required]],
         email:['',[Validators.required,Validators.email]],
         
 
-      }) */
+      })
 
      
-        this.registerForm = this.formBuilder.group({
-          prenom: ['', [Validators.required, this.noWhitespaceValidator]],
-          nom: ['', [Validators.required, this.noWhitespaceValidator]],
-          email: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
-      
-        });
     
 } 
 
-noWhitespaceValidator(control: FormControl) {
+/* noWhitespaceValidator(control: FormControl) {
   const isWhitespace = (control.value || '').trim().length === 0;
   const isValid = !isWhitespace;
   return isValid ? null : { 'whitespace': true };
-}
+} */
 onSubmit(){
- 
-  this.registerForm.setValue({
-    prenom: [''],
-    nom: [''],
-    email: [''],
-  });
+
 }
 
 ngOnInit(): void {
+
+
+
+/*   this.registerForm = this.formBuilder.group({
+    prenom: ['', [Validators.required, this.noWhitespaceValidator]],
+    nom: ['', [Validators.required, this.noWhitespaceValidator]],
+    email: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+
+  }); */
   this.profil = JSON.parse(localStorage.getItem('connectedUser') as unknown as any);
 
   this.userService.getUsers().subscribe(
@@ -74,43 +73,10 @@ ngOnInit(): void {
 
 }
 
-  modifUsers (){
-   
-    this.submitted = true
-  this.spin = false
-   if(!this.registerForm.invalid){
-  this.spin = false
-  return ;
-} 
-    const id =  this.registerForm.value.id;
-    console.log("modif");
-    
   
-   const user ={
-    nom : this.registerForm.value.nom,
-    prenom: this.registerForm.value.prenom,
-    email: this.registerForm.value.email
-   }
-   this.showForm = true
-   if(this.registerForm.invalid){
-    return ;
-  }
-
-  this.userService.modifUsers(id,user).subscribe(
-   {
-    next: (data) => {
-      console.log(data);
-      
-    },
-    error: (error) => {
-      console.log(error);
-      
-    }
-   }
-  );
 }
 
-  }
+  
 
 
 

@@ -12,6 +12,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+user: any;
+getUserPassword(arg0: any) {
+throw new Error('Method not implemented.');
+}
   profil!: any;
   logoutIcon = faPersonWalkingArrowRight
   registerForm!:FormGroup;

@@ -9,6 +9,7 @@ import { ConnectionComponent } from './connection/connection.component';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { ModificationComponent } from './modification/modification.component';
 import { AuthGuard } from './guards/auth.guard';
+import { ModifprofilComponent } from './modifprofil/modifprofil.component';
 
 
 
@@ -25,8 +26,8 @@ const routes: Routes = [
   {path: 'modifier/:id',component:ModifierComponent},
   {path: 'tableau-user',component:TableauUserComponent},
   {path: 'tableau-arch',component:TableauArchComponent},
-  {path: "modification", component: ModifierComponent},
-
+/*   {path: "modification", component: ModifierComponent}, */
+  {path: "modifprofil", component: ModifprofilComponent},
 
 ];
 
