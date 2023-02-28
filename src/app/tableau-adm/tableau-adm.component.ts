@@ -1,23 +1,9 @@
-import { AfterViewChecked, AfterViewInit, ChangeDetectionStrategy, Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup,Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { UserService } from '../services/user.service';
 import { User } from '../models/user.model';
 import { Router } from '@angular/router';
-import { SocketService } from '../services/socket.service';
-
-
-
-interface donneeliste {
-  prenom:string;
-  nom:string;
-  email:string;
-  role:string;
-  matricule:string;
-  id:string;
-
-
-}
 @Component({
   selector: 'app-tableau-adm',
   templateUrl: './tableau-adm.component.html',
@@ -39,41 +25,35 @@ export class TableauAdmComponent implements OnInit {
   tabOn = true;
   formBuilder: any;
 
-  constructor(private builder: FormBuilder, private userService: UserService){
+  constructor(private builder: FormBuilder, private userService: UserService, private router: Router){
+    //naviguer
+    this.router.onSameUrlNavigation = 'reload'
+    this.router.events.subscribe((data: any) => {
+      if(data.id > 1) {
+        this.tabOn = true;
+      }
+
+
+    })
   this.registerForm = this.builder.group({
     prenom: ['', [Validators.required, this.noWhitespaceValidator]],
     nom: ['', [Validators.required, this.noWhitespaceValidator]],
     email: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
 
   });
-  /* this.registerForm.valueChanges.subscribe(()=> {
-    console.log(this.registerForm.value);
-
-  }) */
 
 }
 
   noWhitespaceValidator(control: FormControl) {
-    const isWhitespace = (control.value || '').trim().length === 0;
-    const isValid = !isWhitespace;
-    return isValid ? null : { 'whitespace': true };
-}
-
- ngAfterViewInit() {
-    this.getDonnees()
- }
+      const isWhitespace = (control.value || '').trim().length === 0;
+      const isValid = !isWhitespace;
+      return isValid ? null : { 'whitespace': true };
+  }
 
   ngOnInit(): void {
      this.getDonnees()
-/*
-     this.registerForm = this.formBuilder.group({
-      prenom: ['', Validators.required],
-      nom: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
-
-  }); */
   }
-  //get f() { return this.registerForm.controls; }
+
   getDonnees = () => {
 
 
@@ -105,7 +85,6 @@ export class TableauAdmComponent implements OnInit {
  recupereDonne(id: any,prenom: any,nom: any,email: any){
   Swal.fire({
     title: 'Voulez-vous vraiment modifier cet utilisateur?',
-
     icon: 'warning',
     confirmButtonColor: "#B82010",
     cancelButtonColor: "green" ,
@@ -113,35 +92,14 @@ export class TableauAdmComponent implements OnInit {
     confirmButtonText: 'oui!',
     cancelButtonText: 'Annuler',
 
-               }).then((result) => {
-                if(result.isConfirmed){
-                  console.log(result);
-
-this.tabOn = false;
-
-
-
-
-
-                }
-
-              })
-              this.id = id
-              this.registerForm.setValue({prenom, nom, email})
-
- /*  this.registerForm = this.builder.group({
-
-    id: [id],
-    prenom: [prenom],
-    nom: [nom],
-    email: [email],
-  }); */
-
-
-
-
-
- }
+  }).then((result) => {
+    if(result.isConfirmed){
+      this.tabOn = false;
+    }
+  })
+  this.id = id
+  this.registerForm.setValue({prenom, nom, email})
+}
 
 
 
@@ -159,39 +117,37 @@ this.tabOn = false;
 
   Swal.fire({
     title: 'Voulez-vous vraiment archiver cet utilisateur?',
+    icon: 'warning',
+    confirmButtonColor: "#B82010",
+    cancelButtonColor: "green" ,
+    showCancelButton: true,
+    confirmButtonText: 'oui!',
+    cancelButtonText: 'Annuler'
+  }).then((result) => {
+    if(result.isConfirmed){
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 2000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      })
 
-      icon: 'warning',
-        confirmButtonColor: "#B82010",
-          cancelButtonColor: "green" ,
-           showCancelButton: true,
-             confirmButtonText: 'oui!',
-                cancelButtonText: 'Annuler'
-               }).then((result) => {
-
-        if(result.isConfirmed){
-          const Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 2000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-              toast.addEventListener('mouseenter', Swal.stopTimer)
-              toast.addEventListener('mouseleave', Swal.resumeTimer)
-            }
-          })
-
-  this.userService.delete(id).subscribe(()=>{
-    Toast.fire({
-      icon: 'success',
-      title: `Archivé avec succés`
-    })
-    this.getDonnees()
+      this.userService.delete(id).subscribe(()=>{
+        Toast.fire({
+          icon: 'success',
+          title: `Archivé avec succés`
+        })
+        this.getDonnees()
+      })
+    }
   })
-}
-})
 
-}
+  }
 
   modifier(){
     if(!this.registerForm.valid){

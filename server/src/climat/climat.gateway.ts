@@ -13,7 +13,14 @@ import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { SerialPort } from 'serialport';
 import { ReadlineParser } from '@serialport/parser-readline';
-const port = new SerialPort({ path: '/dev/ttyACM0', baudRate: 9600 });
+const port = new SerialPort({
+  path: '/dev/ttyACM0',
+  baudRate: 9600,
+  dataBits: 8,
+  parity: 'none',
+  stopBits: 1,
+  //flowControl: false,
+});
 
 const parser = port.pipe(new ReadlineParser({ delimiter: '\r\n' }));
 /* parser.on('data', console.log); */
@@ -48,18 +55,18 @@ export class ClimatGateway implements OnGatewayConnection, OnGatewayDisconnect {
     const temperature = 30;
     const humidity = 20;
     client.on('fanOn', (onData) => {
-      port.write(onData);
+      //port.write(onData);
       this.fanOn = onData;
-      port.drain((err) => {
+      /*port.drain((err) => {
         console.log(err);
-      });
+      });*/
     });
     client.on('fanOff', (offData) => {
       this.fanOn = offData;
-      port.write(offData);
-      port.drain((err) => {
+      //port.write(offData);
+      /*port.drain((err) => {
         console.log(err);
-      });
+      });*/
     });
 
     parser.on('data', (data) => {
@@ -67,7 +74,7 @@ export class ClimatGateway implements OnGatewayConnection, OnGatewayDisconnect {
       //console.log(data);
       port.write(this.fanOn);
       port.drain((err) => {
-        console.log(err);
+        //console.log(err);
       });
       this.logger.log(this.fanOn);
       const climat = {

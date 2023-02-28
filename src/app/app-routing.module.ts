@@ -25,6 +25,7 @@ const routes: Routes = [
   {path: 'tableau-user',component:TableauUserComponent, canActivate: [AuthGuard]},
   {path: 'tableau-arch',component:TableauArchComponent, canActivate: [AuthGuard]},
   {path: "modifprofil", component: ModifprofilComponent, canActivate: [AuthGuard]},
+  {path: 'modifpassword',component:ModifprofilComponent, canActivate: [AuthGuard]},
   /* {path: "modification", component: ModifierComponent}, */
   {path: '**', redirectTo: ""},
 /*   {path: "modification", component: ModifierComponent}, */

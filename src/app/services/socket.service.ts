@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Socket } from 'ngx-socket-io';
 
@@ -6,7 +7,7 @@ import { Socket } from 'ngx-socket-io';
 })
 export class SocketService {
 
-  constructor(private socket: Socket) { }
+  constructor(private socket: Socket, private httpClient: HttpClient) { }
 
   onSocketConnected() {
     this.socket.emit('connection', 'connected')
@@ -16,6 +17,14 @@ export class SocketService {
     }) */
 		return this.socket.fromEvent('connection');
 	}
+
+  getTodayClimat() {
+    return this.httpClient.get('http://localhost:3001/climat/');
+  }
+
+  getHistory() {
+    return this.httpClient.get('http://localhost:3001/climat/histo');
+  }
 
   turFanOn() {
     this.socket.emit('fanOn', '1');

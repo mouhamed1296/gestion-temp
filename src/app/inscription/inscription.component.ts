@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {  FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../services/user.service';
 import Swal from 'sweetalert2';
@@ -12,7 +12,6 @@ export class InscriptionComponent  {
   signupError: string | null = null;
 
   constructor(private builder: FormBuilder, private userService: UserService){}
-
   profileForm = this.builder.group({
     firstName: ['', [Validators.required, this.noWhitespaceValidator]],
     lastName: ['', [Validators.required, this.noWhitespaceValidator]],
@@ -24,20 +23,7 @@ export class InscriptionComponent  {
     validators: [this.MustMatch('Password', 'Confirm'), this.handleRole('Role')],
   });
 
-  ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
-    this.profileForm = this.builder.group({
-      id:[''],
-      firstName: ['', [Validators.required, this.noWhitespaceValidator]],
-      lastName: ['',[Validators.required, this.noWhitespaceValidator]],
-      Email: ['',[Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
-      Role: new FormControl('', Validators.required),
-      Password: new FormControl('', Validators.required),
-      Confirm: new FormControl('', Validators.required),
-      
-    })
-  }
+  ngOnInit(): void {}
 
   handleRole(controlName: string) {
     return (formGroup: FormGroup) => {

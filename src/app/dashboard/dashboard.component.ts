@@ -1,24 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-
-import dashboard from '../histo.json';
-import tableau from '../tableauhis.json';
 import profils from '../profil.json';
 import { SocketService } from '../services/socket.service';
 import { Router } from '@angular/router';
 
 
-
-interface historique {
-  Heure: string;
-  temperature: string;
-  humidite: string;
-  img: string;
-}
-interface tab {
-  humidite: string;
-  temperature: string;
-
-}
 export interface DONNE {
   NOM: string;
   PRENOM: string;
@@ -34,8 +19,8 @@ export interface DONNE {
 })
 export class DashboardComponent {
 
-  histo: historique[] = dashboard;
-  tableauhis: tab[] = tableau;
+  histo: any = [];
+  tableauhis: any = [];
   profil: DONNE[] = profils;
   climatRealtime: {temperature: string,  humidity: string} = {temperature: '--',  humidity: '--'}
   manuel: boolean = false
@@ -48,7 +33,7 @@ export class DashboardComponent {
 
     } */
     this.socketService.onSocketConnected().subscribe((data: any) => {
-      console.log(data);
+      //console.log(data);
       this.climatRealtime = data
 
 
@@ -64,6 +49,33 @@ export class DashboardComponent {
 
       }
      } */
+    })
+    this.socketService.getTodayClimat().subscribe((data:any) => {
+        data['8h'].Heure = '8h';
+        data['12h'].Heure = '12h';
+        data['19h'].Heure = '19h';
+        data['8h'].img = 'assets/sun-cloud.png';
+        data['12h'].img = 'assets/sun.png';
+        data['19h'].img = 'assets/moon-cloud.png';
+        this.histo[0] = data['8h']
+        this.histo[1] = data['12h']
+        this.histo[2] = data['19h']
+    })
+
+    this.socketService.getHistory().subscribe((data: any) => {
+      data.forEach((climat:any) => {
+        const historDay = climat.date.split('/')[0];
+        const historMonth = climat.date.split('/')[1];
+        const historYear = climat.date.split('/')[2];
+        const historDate = `${historYear}-${historMonth}-${historDay}`;
+        const date = new Date(historDate);
+        const dayOfWeek = date.getDay();
+        //console.log(climat.moyenne, dayOfWeek);
+
+        this.tableauhis.push(climat.moyenne)
+      });
+      //console.log(data);
+
     })
   }
 
