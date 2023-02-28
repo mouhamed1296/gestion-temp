@@ -10,6 +10,7 @@ import { UserNotFoundException } from './exceptions/userNotFound.exception';
 import { DraftedUserException } from './exceptions/draftedUser.exception';
 import { IncorrectCredentialsException } from './exceptions/incorrectCredentials.exception';
 import { EmailAlreadyExistsException } from './exceptions/emailAlreadyExists.exception';
+import { IncorrectPasswordException } from './exceptions/IncorrectPasswordException';
 
 @Injectable()
 export class UsersService {
@@ -67,8 +68,17 @@ export class UsersService {
   }
 
   //Recuperation de tous les utilisateur de la base
-  findAll() {
-    return this.userModel.find().exec();
+  async findAll() {
+    return (await this.userModel.find().exec()).filter(
+      (user) => user.etat === 1,
+    );
+  }
+
+  //Recuperation de tous les utilisateur archive de la base
+  async findAllArchive() {
+    return (await this.userModel.find().exec()).filter(
+      (user) => user.etat === 0,
+    );
   }
 
   //Recuperation d'un utilisateur de la base à travers son email
@@ -80,7 +90,7 @@ export class UsersService {
     return await this.userModel.findOne({ _id: id });
   }
 
-  //Modification d'un utilisateur à travers son matricule
+  //Modification d'un utilisateur à travers son id
   async update(id: string, updateUserDto: UpdateUserDto) {
     const user = await this.findOneById(id);
     const userExist = await this.findOne(updateUserDto.email);
@@ -102,7 +112,30 @@ export class UsersService {
     );
   }
 
-  //Archivage d'un utilisateur à travers matricule
+  //Modification du mot de passe d'un utilisateur à travers son id
+  async updatePassword(id: string, updateUserDto: any) {
+    const user = await this.findOneById(id);
+    //Verifier si l'utilisateur a entré un mot de passe correct
+    const isPasswordCorrect = await bcrypt.compare(
+      updateUserDto.ancienPassword,
+      user.password,
+    );
+
+    if (!isPasswordCorrect) throw new IncorrectPasswordException();
+    const password = await bcrypt.hash(
+      updateUserDto.newPassword,
+      this.saltOrRounds,
+    );
+    //Modification de l'utilisateur
+    return this.userModel.updateOne(
+      { _id: id },
+      {
+        password: password,
+      },
+    );
+  }
+
+  //Archivage d'un utilisateur à travers id
   remove(id: string) {
     return this.userModel.updateOne(
       { _id: id },
